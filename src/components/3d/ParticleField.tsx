@@ -43,14 +43,16 @@ const Particles = ({
     if (points.current) {
       points.current.rotation.x = state.clock.elapsedTime * speed * 0.1;
       points.current.rotation.y = state.clock.elapsedTime * speed * 0.05;
-      
-      const positions = points.current.geometry.attributes.position.array as Float32Array;
-      
-      for (let i = 0; i < count; i++) {
-        positions[i * 3 + 1] += Math.sin(state.clock.elapsedTime + i) * 0.01;
+      const posAttr = points.current.geometry.attributes['position'];
+      if (posAttr) {
+        const positions = posAttr.array as Float32Array;
+        if (positions) {
+          for (let i = 0; i < count; i++) {
+            positions[i * 3 + 1] += Math.sin(state.clock.elapsedTime + i) * 0.01;
+          }
+        }
+        posAttr.needsUpdate = true;
       }
-      
-      points.current.geometry.attributes.position.needsUpdate = true;
     }
   });
   

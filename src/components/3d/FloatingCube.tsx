@@ -92,7 +92,7 @@ const FloatingCube = ({
           scale={scale}
           color={color}
           opacity={opacity}
-          text={text}
+          {...(typeof text === 'string' ? { text } : {})}
         />
       </Canvas>
     </div>

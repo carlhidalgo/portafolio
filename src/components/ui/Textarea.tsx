@@ -9,7 +9,6 @@ interface TextareaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>
   variant?: 'default' | 'filled' | 'outlined';
   resize?: 'none' | 'vertical' | 'horizontal' | 'both';
   className?: string;
-  children?: ReactNode;
 }
 
 const Textarea = ({

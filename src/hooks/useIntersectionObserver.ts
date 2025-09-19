@@ -28,11 +28,15 @@ export const useIntersectionObserver = (
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsIntersecting(entry.isIntersecting);
-        setEntry(entry);
-
-        if (entry.isIntersecting && triggerOnce) {
-          observer.unobserve(element);
+        if (entry) {
+          setIsIntersecting(entry.isIntersecting);
+          setEntry(entry);
+          if (entry.isIntersecting && triggerOnce) {
+            observer.unobserve(element);
+          }
+        } else {
+          setIsIntersecting(false);
+          setEntry(null);
         }
       },
       {

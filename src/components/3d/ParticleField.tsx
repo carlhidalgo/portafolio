@@ -46,9 +46,11 @@ const Particles = ({
       const posAttr = points.current.geometry.attributes['position'];
       if (posAttr) {
         const positions = posAttr.array as Float32Array;
-        if (positions) {
+        if (positions && positions.length >= count * 3) {
           for (let i = 0; i < count; i++) {
-            positions[i * 3 + 1] += Math.sin(state.clock.elapsedTime + i) * 0.01;
+            if (typeof positions[i * 3 + 1] === 'number') {
+              positions[i * 3 + 1] += Math.sin(state.clock.elapsedTime + i) * 0.01;
+            }
           }
         }
         posAttr.needsUpdate = true;

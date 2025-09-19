@@ -1,0 +1,265 @@
+# Portafolio Profesional - Ingeniero de Software
+
+## 🎯 Objetivo del Proyecto
+Crear un portafolio profesional moderno y sólido para un ingeniero de software con efectos 3D, animaciones fluidas y diseño responsive. El proyecto debe demostrar habilidades técnicas avanzadas y ser una carta de presentación profesional.
+
+## 🛠️ Stack Tecnológico
+- **Frontend**: React 18 + TypeScript
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS + CSS Modules + Framer Motion
+- **3D Graphics**: Three.js + React Three Fiber
+- **Animations**: Framer Motion + Lottie
+- **Icons**: Lucide React + Heroicons
+- **Fonts**: Inter + JetBrains Mono
+- **Deployment**: Vercel/Netlify
+
+## 🏗️ Arquitectura del Proyecto
+
+### Estructura de Carpetas
+```
+src/
+├── components/           # Componentes reutilizables
+│   ├── ui/              # Componentes base (Button, Card, etc.)
+│   ├── layout/          # Layout components (Header, Footer, etc.)
+│   ├── sections/        # Secciones de la página
+│   └── 3d/              # Componentes 3D
+├── hooks/               # Custom hooks
+├── utils/               # Utilidades y helpers
+├── types/               # Definiciones de TypeScript
+├── data/                # Datos estáticos (proyectos, experiencia)
+├── styles/              # Estilos globales y CSS modules
+└── assets/              # Imágenes, iconos, modelos 3D
+```
+
+## 🎨 Diseño y UX
+
+### Principios de Diseño
+- **Minimalismo**: Diseño limpio y profesional
+- **Consistencia**: Paleta de colores y tipografía coherente
+- **Accesibilidad**: WCAG 2.1 AA compliance
+- **Performance**: Core Web Vitals optimizados
+- **Responsive**: Mobile-first approach
+
+### Paleta de Colores
+- **Primary**: #3B82F6 (Blue-500)
+- **Secondary**: #1E40AF (Blue-700)
+- **Accent**: #06B6D4 (Cyan-500)
+- **Dark**: #0F172A (Slate-900)
+- **Light**: #F8FAFC (Slate-50)
+- **Gray Scale**: Slate 100-900
+
+### Tipografía
+- **Headings**: Inter (600, 700, 800)
+- **Body**: Inter (400, 500)
+- **Code**: JetBrains Mono (400, 500)
+
+## 🚀 Características Técnicas
+
+### Efectos 3D
+- **Hero Section**: Partículas animadas o geometría 3D
+- **Proyectos**: Cards con hover 3D
+- **Skills**: Visualización 3D de tecnologías
+- **Background**: Elementos 3D sutiles
+
+### Animaciones
+- **Page Transitions**: Framer Motion page transitions
+- **Scroll Animations**: Intersection Observer + Framer Motion
+- **Micro-interactions**: Hover effects, button animations
+- **Loading States**: Skeleton loaders, progress indicators
+
+### Performance
+- **Code Splitting**: Lazy loading de componentes
+- **Image Optimization**: Next.js Image o similar
+- **Bundle Analysis**: Webpack Bundle Analyzer
+- **Lighthouse Score**: 90+ en todas las métricas
+
+## 📱 Secciones del Portafolio
+
+### 1. Hero Section
+- Nombre y título profesional
+- Animación 3D de fondo
+- CTA principal (Ver proyectos)
+- Indicador de scroll
+
+### 2. About Me
+- Foto profesional
+- Descripción personal
+- Skills principales
+- Estadísticas (años experiencia, proyectos)
+
+### 3. Skills & Technologies
+- Categorías: Frontend, Backend, DevOps, Tools
+- Visualización 3D de logos/iconos
+- Nivel de experiencia (progreso animado)
+
+### 4. Proyectos
+- Grid de proyectos destacados
+- Filtros por tecnología
+- Modal con detalles del proyecto
+- Links a GitHub y demo
+
+### 5. Experiencia
+- Timeline de experiencia laboral
+- Logros y responsabilidades
+- Tecnologías utilizadas
+
+### 6. Contacto
+- Formulario de contacto
+- Redes sociales
+- Información de contacto
+
+## 🔧 Configuración de Desarrollo
+
+### TypeScript
+- Strict mode habilitado
+- Path mapping configurado
+- Interfaces bien definidas
+- No any types permitidos
+
+### ESLint + Prettier
+- Reglas estrictas de React/TypeScript
+- Import sorting automático
+- Formatting consistente
+- Pre-commit hooks
+
+### Testing
+- Jest + React Testing Library
+- Coverage mínimo 80%
+- Tests de componentes críticos
+- E2E tests con Playwright
+
+## 📦 Dependencias Principales
+
+### Core
+- react, react-dom
+- typescript
+- vite
+
+### Styling & UI
+- tailwindcss
+- framer-motion
+- @headlessui/react
+- lucide-react
+
+### 3D Graphics
+- three
+- @react-three/fiber
+- @react-three/drei
+
+### Utilities
+- clsx
+- date-fns
+- react-hook-form
+- zod
+
+## 🎯 Objetivos de Performance
+
+### Core Web Vitals
+- **LCP**: < 2.5s
+- **FID**: < 100ms
+- **CLS**: < 0.1
+
+### Bundle Size
+- **Initial Bundle**: < 200KB gzipped
+- **Total Bundle**: < 500KB gzipped
+
+### SEO
+- Meta tags optimizados
+- Open Graph tags
+- Schema.org markup
+- Sitemap.xml
+
+## 🚀 Comandos de Desarrollo
+
+```bash
+# Desarrollo
+npm run dev
+
+# Build
+npm run build
+
+# Preview
+npm run preview
+
+# Lint
+npm run lint
+
+# Test
+npm run test
+
+# Type check
+npm run type-check
+```
+
+## 📝 Convenciones de Código
+
+### Naming
+- **Components**: PascalCase (UserProfile.tsx)
+- **Files**: kebab-case (user-profile.tsx)
+- **Variables**: camelCase (userName)
+- **Constants**: UPPER_SNAKE_CASE (API_URL)
+
+### Imports
+```typescript
+// 1. React imports
+import React from 'react'
+
+// 2. Third-party imports
+import { motion } from 'framer-motion'
+
+// 3. Internal imports
+import { Button } from '@/components/ui'
+import { useAuth } from '@/hooks'
+```
+
+### Component Structure
+```typescript
+interface ComponentProps {
+  // Props interface
+}
+
+export const Component: React.FC<ComponentProps> = ({ prop1, prop2 }) => {
+  // Hooks
+  // State
+  // Effects
+  // Handlers
+  // Render
+}
+```
+
+## 🎨 Efectos 3D Específicos
+
+### Hero Section
+- Partículas flotantes con Three.js
+- Geometría animada (cubos, esferas)
+- Efecto parallax en scroll
+
+### Skills Section
+- Logos 3D que rotan al hover
+- Barras de progreso 3D
+- Efecto de profundidad
+
+### Proyectos
+- Cards con perspectiva 3D
+- Hover effects con transformaciones
+- Modal con modelo 3D del proyecto
+
+## 🔒 Seguridad y Mejores Prácticas
+
+- Sanitización de inputs del formulario
+- Validación con Zod
+- Rate limiting en formulario de contacto
+- HTTPS obligatorio
+- Headers de seguridad configurados
+
+## 📊 Analytics y Monitoreo
+
+- Google Analytics 4
+- Hotjar para heatmaps
+- Sentry para error tracking
+- Performance monitoring
+
+---
+
+**Nota**: Este portafolio debe ser una demostración de habilidades técnicas avanzadas, con código limpio, arquitectura sólida y una experiencia de usuario excepcional. Cada línea de código debe reflejar profesionalismo y atención al detalle.
+

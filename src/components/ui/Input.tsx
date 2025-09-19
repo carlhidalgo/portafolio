@@ -1,6 +1,5 @@
 import { ReactNode } from 'react';
 import { clsx } from 'clsx';
-import type { BaseComponentProps } from '@/types';
 
 interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   label?: string;

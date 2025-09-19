@@ -2,7 +2,6 @@ import { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial } from '@react-three/drei';
 import * as THREE from 'three';
-import type { ParticleConfig } from '@/types';
 
 interface ParticleFieldProps {
   count?: number;

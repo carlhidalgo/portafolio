@@ -2,7 +2,6 @@ import { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Box, Text } from '@react-three/drei';
 import * as THREE from 'three';
-import type { ThreeDConfig } from '@/types';
 
 interface FloatingCubeProps {
   position?: [number, number, number];

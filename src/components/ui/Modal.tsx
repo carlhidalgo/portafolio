@@ -1,7 +1,6 @@
 import { useEffect, ReactNode } from 'react';
 import { clsx } from 'clsx';
 import { X } from 'lucide-react';
-import type { BaseComponentProps } from '@/types';
 
 interface ModalProps extends BaseComponentProps {
   isOpen: boolean;

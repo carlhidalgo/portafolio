@@ -1,6 +1,5 @@
 import { ReactNode } from 'react';
 import { clsx } from 'clsx';
-import type { BaseComponentProps } from '@/types';
 
 interface TextareaProps extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'size'> {
   label?: string;

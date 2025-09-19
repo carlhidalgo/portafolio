@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import { FaMapMarkerAlt, FaEnvelope, FaPhoneAlt, FaUserTie, FaGraduationCap, FaCertificate, FaTools, FaUserFriends } from 'react-icons/fa';
+import { motion as m } from 'framer-motion';
 
 const AboutSection = () => {
   const { ref, isIntersecting } = useIntersectionObserver({
@@ -35,7 +36,10 @@ const AboutSection = () => {
           transition={{ duration: 0.7, ease: 'easeOut' }}
         >
           <h2 className="text-4xl font-extrabold text-center mb-2 tracking-tight text-gradient bg-gradient-to-r from-primary-400 to-secondary-400 bg-clip-text text-transparent">
-            <FaUserTie className="inline-block mr-2 mb-1 text-primary-400" size={36} />Sobre Mí
+            <m.span whileHover={{ scale: 1.2, rotate: 10 }} transition={{ type: 'spring', stiffness: 300 }} className="inline-block mr-2 mb-1 align-middle">
+              <FaUserTie className="text-primary-400" size={36} />
+            </m.span>
+            Sobre Mí
           </h2>
           <p className="text-dark-300 text-lg text-center mb-8 max-w-2xl mx-auto leading-relaxed">
             Analista Programador con experiencia en desarrollo backend utilizando <span className="font-semibold text-primary-400">Python</span>, <span className="font-semibold text-primary-400">JavaScript</span>, <span className="font-semibold text-primary-400">Node.js</span>, <span className="font-semibold text-primary-400">Django</span> y bases de datos <span className="font-semibold text-primary-400">SQL</span>. Certificado en ciberseguridad por Google y Cisco, con habilidades en resolución de problemas, trabajo en equipo y adaptación a entornos dinámicos. Apasionado por aplicar la tecnología para optimizar procesos y resolver desafíos técnicos.
@@ -43,19 +47,34 @@ const AboutSection = () => {
           <div className="flex flex-col md:flex-row md:items-center md:gap-8 mb-8">
             <div className="flex-1 mb-4 md:mb-0 space-y-1">
               <div className="flex items-center gap-2 text-lg text-dark-200 font-semibold">
-                <FaUserTie className="text-primary-400" /> Carlos Hidalgo de la Fuente
+                <m.span whileHover={{ scale: 1.2, rotate: 10 }} transition={{ type: 'spring', stiffness: 300 }} className="inline-block">
+                  <FaUserTie className="text-primary-400" />
+                </m.span>
+                Carlos Hidalgo de la Fuente
               </div>
               <div className="flex items-center gap-2 text-dark-300 text-base">
-                <FaGraduationCap className="text-secondary-400" /> Analista Programador
+                <m.span whileHover={{ scale: 1.2, rotate: -10 }} transition={{ type: 'spring', stiffness: 300 }} className="inline-block">
+                  <FaGraduationCap className="text-secondary-400" />
+                </m.span>
+                Analista Programador
               </div>
               <div className="flex items-center gap-2 text-dark-400 text-sm mt-1">
-                <FaMapMarkerAlt className="text-primary-400" /> Valparaíso, Chile
+                <m.span whileHover={{ scale: 1.2, y: -5 }} transition={{ type: 'spring', stiffness: 300 }} className="inline-block">
+                  <FaMapMarkerAlt className="text-primary-400" />
+                </m.span>
+                Valparaíso, Chile
               </div>
               <div className="flex items-center gap-2 text-dark-400 text-sm">
-                <FaPhoneAlt className="text-primary-400" /> (+56) 993516225
+                <m.span whileHover={{ scale: 1.2, rotate: 10 }} transition={{ type: 'spring', stiffness: 300 }} className="inline-block">
+                  <FaPhoneAlt className="text-primary-400" />
+                </m.span>
+                (+56) 993516225
               </div>
               <div className="flex items-center gap-2 text-dark-400 text-sm">
-                <FaEnvelope className="text-primary-400" /> karlozoh@gmail.com
+                <m.span whileHover={{ scale: 1.2, rotate: -10 }} transition={{ type: 'spring', stiffness: 300 }} className="inline-block">
+                  <FaEnvelope className="text-primary-400" />
+                </m.span>
+                karlozoh@gmail.com
               </div>
             </div>
             <div className="flex-1 flex flex-col items-center justify-center">
@@ -69,13 +88,19 @@ const AboutSection = () => {
           </div>
           <div className="mb-6">
             <div className="flex items-center gap-2 font-semibold text-dark-100 mb-1 text-lg">
-              <FaGraduationCap className="text-secondary-400" /> Educación
+              <m.span whileHover={{ scale: 1.2, rotate: 10 }} transition={{ type: 'spring', stiffness: 300 }} className="inline-block">
+                <FaGraduationCap className="text-secondary-400" />
+              </m.span>
+              Educación
             </div>
             <div className="ml-7 text-dark-200">2023 - 2025: Duoc UC, Analista Programador Computacional</div>
           </div>
           <div className="mb-8">
             <div className="flex items-center gap-2 font-semibold text-dark-100 mb-2 text-lg">
-              <FaCertificate className="text-primary-400" /> Certificaciones
+              <m.span whileHover={{ scale: 1.2, rotate: -10 }} transition={{ type: 'spring', stiffness: 300 }} className="inline-block">
+                <FaCertificate className="text-primary-400" />
+              </m.span>
+              Certificaciones
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <a href="https://www.coursera.org/account/accomplishments/professional-cert/CYTK8YUPXII4" target="_blank" rel="noopener noreferrer">

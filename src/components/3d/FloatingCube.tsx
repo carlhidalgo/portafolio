@@ -9,7 +9,7 @@ interface FloatingCubeProps {
   scale?: [number, number, number];
   color?: string;
   opacity?: number;
-  text?: string;
+  text?: string | undefined;
   className?: string;
 }
 

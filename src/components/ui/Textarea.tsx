@@ -1,13 +1,15 @@
-import { ReactNode } from 'react';
 import { clsx } from 'clsx';
+import { TextareaHTMLAttributes } from 'react';
 
-interface TextareaProps extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'size'> {
+interface TextareaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'size'> {
   label?: string;
   error?: string;
   helperText?: string;
   size?: 'sm' | 'md' | 'lg';
   variant?: 'default' | 'filled' | 'outlined';
   resize?: 'none' | 'vertical' | 'horizontal' | 'both';
+  className?: string;
+  children?: ReactNode;
 }
 
 const Textarea = ({

@@ -1,15 +1,19 @@
-import { useEffect, ReactNode } from 'react';
+import { useEffect } from 'react';
+import type { ReactNode, HTMLAttributes } from 'react';
 import { clsx } from 'clsx';
 import { X } from 'lucide-react';
 
-interface ModalProps extends BaseComponentProps {
+
+type ModalProps = HTMLAttributes<HTMLDivElement> & {
+  children?: ReactNode;
+  className?: string;
   isOpen: boolean;
   onClose: () => void;
   title?: string;
   size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
   closeOnOverlayClick?: boolean;
   closeOnEscape?: boolean;
-}
+};
 
 const Modal = ({
   children,

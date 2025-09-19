@@ -48,8 +48,12 @@ const Particles = ({
         const positions = posAttr.array as Float32Array;
         if (positions && positions.length >= count * 3) {
           for (let i = 0; i < count; i++) {
-            if (typeof positions[i * 3 + 1] === 'number') {
-              positions[i * 3 + 1] += Math.sin(state.clock.elapsedTime + i) * 0.01;
+            const idx = i * 3 + 1;
+            if (
+              typeof positions[idx] === 'number' &&
+              positions[idx] !== undefined
+            ) {
+              positions[idx] += Math.sin(state.clock.elapsedTime + i) * 0.01;
             }
           }
         }

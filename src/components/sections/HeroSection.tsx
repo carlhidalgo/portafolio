@@ -113,7 +113,7 @@ const HeroSection = () => {
           variants={itemVariants}
         >
           <Button
-            variant="primary"
+            variant="outline"
             size="lg"
             onClick={() => {
               document.getElementById('proyectos')?.scrollIntoView({ behavior: 'smooth' });

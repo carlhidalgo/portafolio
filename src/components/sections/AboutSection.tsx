@@ -37,7 +37,7 @@ const AboutSection = () => {
             Sobre Mí
           </h2>
           <p className="text-dark-300 text-lg text-center mb-8 max-w-2xl mx-auto leading-relaxed">
-            Analista Programador con experiencia en desarrollo backend utilizando <span className="font-semibold text-primary-400">Python</span>, <span className="font-semibold text-primary-400">JavaScript</span>, <span className="font-semibold text-primary-400">Node.js</span>, <span className="font-semibold text-primary-400">Django</span> y bases de datos <span className="font-semibold text-primary-400">SQL</span>. Certificado en ciberseguridad por Google y Cisco, con habilidades en resolución de problemas, trabajo en equipo y adaptación a entornos dinámicos. Apasionado por aplicar la tecnología para optimizar procesos y resolver desafíos técnicos.
+            Analista Programador con experiencia en desarrollo full stack utilizando <span className="font-semibold text-primary-400">Python</span>, <span className="font-semibold text-primary-400">JavaScript</span>, <span className="font-semibold text-primary-400">Node.js</span>, <span className="font-semibold text-primary-400">Django</span> y bases de datos <span className="font-semibold text-primary-400">SQL</span>. Certificado en ciberseguridad por Google y Cisco, con habilidades en resolución de problemas, trabajo en equipo y adaptación a entornos dinámicos. Apasionado por aplicar la tecnología para optimizar procesos y resolver desafíos técnicos.
           </p>
           <div className="flex flex-col md:flex-row md:items-center md:gap-8 mb-8">
             <div className="flex-1 mb-4 md:mb-0 space-y-1">

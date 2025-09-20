@@ -89,7 +89,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
         {/* Sub-tarjeta para el video */}
         <div className="w-full bg-dark-900/80 border border-primary-900/40 rounded-xl shadow-lg mb-3 overflow-visible relative flex items-center justify-center min-h-[192px]">
           <img
-            src=""
+            src="https://pngtree.com/freebackground/glowing-neon-cyberpunk-geometric-texture-in-vibrant-pink-and-black_13582643.html" 
             alt={`Fondo 3D de la tarjeta de ${project.title}`}
             loading="lazy"
             className="absolute inset-0 w-full h-full object-cover scale-110 opacity-60 pointer-events-none z-0"
@@ -208,7 +208,7 @@ const ProjectsSection = () => {
             className="text-3xl font-bold text-gradient mb-4"
             variants={itemVariants}
           >
-            Mis Proyectos Destacados
+            Mis Proyectos 
           </motion.h2>
           <motion.p
             className="text-lg text-dark-300 max-w-2xl mx-auto"

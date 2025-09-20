@@ -89,7 +89,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
         {/* Sub-tarjeta para el video */}
         <div className="w-full bg-dark-900/80 border border-primary-900/40 rounded-xl shadow-lg mb-3 overflow-visible relative flex items-center justify-center min-h-[192px]">
           <img
-            src="/card-3d-bg.png"
+            src=""
             alt={`Fondo 3D de la tarjeta de ${project.title}`}
             loading="lazy"
             className="absolute inset-0 w-full h-full object-cover scale-110 opacity-60 pointer-events-none z-0"
@@ -196,17 +196,7 @@ const ProjectsSection = () => {
       id="proyectos"
       className="relative py-20 px-4 bg-transparent overflow-hidden"
     >
-      {/* Fondo 3D imagen */}
-      <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
-        <img
-          src="/hero-bg.png"
-          alt="Fondo 3D de la sección proyectos"
-          loading="lazy"
-          className="w-full h-full object-cover blur-[2px] opacity-40 scale-110"
-          style={{ filter: 'drop-shadow(0 0 60px #00f2fe)' }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-dark-900/80 to-dark-800/90" />
-      </div>
+      {/* ...sin fondo propio, usa el fondo global... */}
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
           className="text-center mb-12"

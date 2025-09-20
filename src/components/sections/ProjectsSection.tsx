@@ -1,9 +1,8 @@
 
-import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Card, Button, Modal } from '@/components/ui';
+import { Button } from '@/components/ui';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
-import { ExternalLink, Github, Calendar, Tag, Code } from 'lucide-react';
+import { ExternalLink, Github, Code } from 'lucide-react';
 
 // Proyectos destacados hardcodeados
 const featuredProjects = [
@@ -59,7 +58,6 @@ const ProjectsSection = () => {
     triggerOnce: true,
   });
 
-  const [selectedProject, setSelectedProject] = useState<any>(null);
   //
 
 
@@ -173,43 +171,53 @@ const ProjectsSection = () => {
                 variants={itemVariants}
                 className="group"
               >
-                <Card
-                  title={project.title}
-                  description={project.description}
-                  // Imagen principal se renderiza manualmente para poner fondo 3D detrás
-                  variant={project.featured ? 'featured' : 'default'}
-                  hover={true}
-                  className="h-full shadow-2xl border-2 border-primary-900/20 bg-[#181A20]/80 backdrop-blur-md transition-all duration-300 group-hover:scale-[1.03] group-hover:shadow-primary-400/30 group-hover:border-primary-400/60 group-hover:bg-[#181A20]/95 group-hover:z-20 group-hover:ring-2 group-hover:ring-primary-400/30"
+                <motion.div
+                  className="h-full shadow-2xl border-2 border-primary-900/20 bg-[#181A20]/80 backdrop-blur-md transition-all duration-300 group-hover:scale-[1.03] group-hover:shadow-primary-400/30 group-hover:border-primary-400/60 group-hover:bg-[#181A20]/95 group-hover:z-20 group-hover:ring-2 group-hover:ring-primary-400/30 rounded-xl flex flex-col"
+                  whileHover={{ rotateX: 6, rotateY: -6, scale: 1.04 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                 >
-                  {/* Fondo 3D detrás de la imagen del proyecto */}
-                  <div className="relative mb-4 overflow-hidden rounded-lg group/card3d">
+                  {/* Fondo 3D detrás del video */}
+                  <div className="relative mb-4 overflow-hidden rounded-lg">
                     <img
                       src="/card-3d-bg.png"
                       alt="Fondo 3D"
-                      className="absolute inset-0 w-full h-full object-cover scale-110 opacity-60 transition-transform duration-500 group-hover/card3d:rotate-2 group-hover/card3d:scale-125 pointer-events-none z-0"
+                      className="absolute inset-0 w-full h-full object-cover scale-110 opacity-60 pointer-events-none z-0"
                       style={{ filter: 'blur(2px) drop-shadow(0 0 32px #00f2fe)' }}
                     />
-                    {/* Imagen de previsualización del video o fallback */}
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="relative w-full h-48 object-cover z-10 transition-transform duration-500 group-hover/card3d:-rotate-2 group-hover/card3d:scale-105"
-                      onError={e => {
-                        const target = e.currentTarget;
-                        target.onerror = null;
-                        target.style.display = 'none';
-                        const fallback = target.nextElementSibling as HTMLElement;
-                        if (fallback) fallback.style.display = 'flex';
-                      }}
-                    />
-                    <div
-                      style={{ display: 'none' }}
-                      className="absolute inset-0 flex items-center justify-center bg-dark-800 text-primary-400 text-5xl z-10"
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-16 h-16">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 10l4.553 2.276A1 1 0 0120 13.118V17a2 2 0 01-2 2H6a2 2 0 01-2-2v-3.882a1 1 0 01.447-.842L9 10m6 0V7a2 2 0 00-2-2H9a2 2 0 00-2 2v3m6 0l-6 3" />
-                      </svg>
-                    </div>
+                    {/* Video preview directo en la tarjeta */}
+                    {project.id === 'sparringlab' && (
+                      <video
+                        src="/sparringlab.mp4"
+                        poster={project.image}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="relative w-full h-48 object-cover z-10 rounded-lg shadow-lg border border-primary-900/30"
+                      />
+                    )}
+                    {project.id === 'taller-makween' && (
+                      <video
+                        src="/tallerrayomakeen.mp4"
+                        poster={project.image}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="relative w-full h-48 object-cover z-10 rounded-lg shadow-lg border border-primary-900/30"
+                      />
+                    )}
+                    {project.id === 'fastapi-risk' && (
+                      <video
+                        src="/fastapirisk.mp4"
+                        poster={project.image}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="relative w-full h-48 object-cover z-10 rounded-lg shadow-lg border border-primary-900/30"
+                      />
+                    )}
                   </div>
                   <div className="flex items-center justify-between mb-4">
                     <span
@@ -263,16 +271,8 @@ const ProjectsSection = () => {
                         Demo
                       </Button>
                     )}
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="flex-1 relative z-20 border-primary-400/70 bg-dark-800/80 hover:bg-primary-900/20 hover:text-primary-300 focus:ring-2 focus:ring-primary-400/60 shadow-[0_2px_12px_0_rgba(0,242,254,0.10)] transition-all duration-200"
-                      onClick={() => setSelectedProject(project)}
-                    >
-                      Ver Detalle
-                    </Button>
                   </div>
-                </Card>
+                </motion.div>
               </motion.div>
             ))}
           </motion.div>
@@ -308,119 +308,6 @@ const ProjectsSection = () => {
         </svg>
       </button>
 
-      {/* Project Detail Modal */}
-      <Modal
-        isOpen={!!selectedProject}
-        onClose={() => setSelectedProject(null)}
-        title={selectedProject?.title}
-        size="xl"
-      >
-        {selectedProject && (
-          <div className="space-y-6 bg-[#181A20] rounded-xl">
-            {/* Video del proyecto */}
-            {selectedProject.id === 'sparringlab' && (
-              <video controls autoPlay muted className="w-full rounded-lg aspect-video mb-4" poster={selectedProject.image}>
-                <source src="/sparringlab.mp4" type="video/mp4" />
-                Tu navegador no soporta el video.
-              </video>
-            )}
-            {selectedProject.id === 'taller-makween' && (
-              <video controls autoPlay muted className="w-full rounded-lg aspect-video mb-4" poster={selectedProject.image}>
-                <source src="/tallerrayomakeen.mp4" type="video/mp4" />
-                Tu navegador no soporta el video.
-              </video>
-            )}
-            {selectedProject.id === 'fastapi-risk' && (
-              <video controls autoPlay muted className="w-full rounded-lg aspect-video mb-4" poster={selectedProject.image}>
-                <source src="/fastapirisk.mp4" type="video/mp4" />
-                Tu navegador no soporta el video.
-              </video>
-            )}
-
-            {/* Project Info */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <h4 className="text-lg font-semibold text-dark-100 mb-2">
-                  Información del Proyecto
-                </h4>
-                <div className="space-y-2 text-sm">
-                  <div className="flex items-center">
-                    <Tag className="w-4 h-4 mr-2 text-dark-400" />
-                    <span className="text-dark-300">Categoría:</span>
-                    <span className="ml-2 text-dark-100 capitalize">
-                      {selectedProject.category}
-                    </span>
-                  </div>
-                  <div className="flex items-center">
-                    <Calendar className="w-4 h-4 mr-2 text-dark-400" />
-                    <span className="text-dark-300">Estado:</span>
-                    <span className={`ml-2 px-2 py-1 rounded-full text-xs ${getStatusColor(selectedProject.status)}`}>
-                      {getStatusLabel(selectedProject.status)}
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <h4 className="text-lg font-semibold text-dark-100 mb-2">
-                  Enlaces
-                </h4>
-                <div className="flex gap-2">
-                  {selectedProject.githubUrl && (
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      href={selectedProject.githubUrl}
-                      target="_blank"
-                      leftIcon={<Github className="w-4 h-4" />}
-                    >
-                      GitHub
-                    </Button>
-                  )}
-                  {selectedProject.liveUrl && (
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      href={selectedProject.liveUrl}
-                      target="_blank"
-                      leftIcon={<ExternalLink className="w-4 h-4" />}
-                    >
-                      Ver Demo
-                    </Button>
-                  )}
-                </div>
-              </div>
-            </div>
-
-            {/* Description */}
-            <div>
-              <h4 className="text-lg font-semibold text-dark-100 mb-2">
-                Descripción
-              </h4>
-              <p className="text-dark-300 leading-relaxed">
-                {selectedProject.longDescription}
-              </p>
-            </div>
-
-            {/* Technologies */}
-            <div>
-              <h4 className="text-lg font-semibold text-dark-100 mb-2">
-                Tecnologías Utilizadas
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {selectedProject.technologies.map((tech: any) => (
-                  <span
-                    key={tech}
-                    className="px-3 py-1 bg-primary-600/20 text-primary-300 rounded-full text-sm border border-primary-500/30"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
-      </Modal>
     </>
   );
 };

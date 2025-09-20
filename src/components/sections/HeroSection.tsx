@@ -45,19 +45,14 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-transparent">
       {/* Tarjeta de fondo 3D que baja con el scroll y se esconde detrás de Sobre mí */}
       <div
         ref={parallaxRef}
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-3xl h-[340px] rounded-3xl overflow-hidden shadow-2xl border-2 border-primary-900/30 transition-transform duration-700"
         style={{ willChange: 'transform', transform: `translate(-50%, calc(-50% + ${offset}px))`, zIndex: 1 }}
       >
-        <img
-          src="/24 jun 2025, 09_02_10 p.m..png"
-          alt="Fondo 3D"
-          className="w-full h-full object-cover blur-[1px] opacity-85 scale-110"
-          style={{ filter: 'drop-shadow(0 0 60px #00f2fe)' }}
-        />
+        {/* ...el fondo global ahora está en App.tsx... */}
         <div className="absolute inset-0 bg-gradient-to-b from-dark-900/40 to-dark-800/60" />
       </div>
 

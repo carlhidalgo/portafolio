@@ -32,7 +32,7 @@ const Button = ({
   rel,
   ...props
 }: ButtonProps) => {
-  const baseClasses = 'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
+  const baseClasses = 'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-400/60 focus-visible:scale-105 focus-visible:shadow-glow hover:scale-105 hover:shadow-glow disabled:opacity-50 disabled:cursor-not-allowed';
   
   const variants = {
     primary: 'bg-primary-600 hover:bg-primary-700 text-white shadow-lg hover:shadow-glow focus:ring-primary-500',
@@ -93,6 +93,9 @@ const Button = ({
         target={target}
         rel={rel}
         className={classes}
+        role="button"
+        aria-label={typeof children === 'string' ? children : undefined}
+        tabIndex={0}
         {...props}
       >
         {content}
@@ -106,6 +109,7 @@ const Button = ({
       className={classes}
       disabled={disabled || loading}
       onClick={onClick}
+      aria-label={typeof children === 'string' ? children : undefined}
       {...props}
     >
       {content}

@@ -1,9 +1,14 @@
 
 
 import { useState } from 'react';
+// Simple mobile detection
+const isMobile = typeof window !== 'undefined' && /Mobi|Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+import { Modal, Button } from '../ui';
+import { motion as fm } from 'framer-motion';
 import { motion } from 'framer-motion';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
-import { FaMapMarkerAlt, FaEnvelope, FaPhoneAlt, FaUserTie, FaGraduationCap, FaCertificate, FaTools, FaUserFriends } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaEnvelope, FaPhoneAlt, FaUserTie, FaGraduationCap, FaCertificate, FaTools, FaUserFriends, FaReact, FaVuejs, FaNodeJs, FaDatabase, FaDocker, FaGitAlt } from 'react-icons/fa';
+import { SiPython, SiDjango, SiFastapi, SiTypescript, SiJavascript, SiPostgresql, SiVercel } from 'react-icons/si';
 import { motion as m } from 'framer-motion';
 
 const AboutSection = () => {
@@ -11,23 +16,13 @@ const AboutSection = () => {
     threshold: 0.2,
     triggerOnce: true,
   });
-  const [cvDownloaded, setCvDownloaded] = useState(false);
-  const handleDownloadCV = () => {
-    const link = document.createElement('a');
-    link.href = '/CurriculumProfesionalCarlos.pdf';
-    link.download = 'CurriculumProfesionalCarlos.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    setCvDownloaded(true);
-    setTimeout(() => setCvDownloaded(false), 3000);
-  };
+  const [cvModalOpen, setCvModalOpen] = useState(false);
 
   return (
     <section
       id="sobre-mi"
       ref={ref}
-      className="py-20 px-4 bg-dark-800/30"
+      className="py-20 px-4 bg-transparent"
     >
       <div className="max-w-3xl mx-auto bg-dark-900/80 rounded-3xl shadow-2xl p-8 border border-dark-700">
         <motion.div
@@ -78,12 +73,49 @@ const AboutSection = () => {
               </div>
             </div>
             <div className="flex-1 flex flex-col items-center justify-center">
-              <button className="btn-primary w-full" onClick={handleDownloadCV}>
-                Descargar CV
-              </button>
-              {cvDownloaded && (
-                <div className="mt-2 text-green-400 font-semibold text-center">¡CV descargado con éxito!</div>
-              )}
+              <Button className="w-full" variant="primary" onClick={() => setCvModalOpen(true)}>
+                Ver CV
+              </Button>
+              <Modal isOpen={cvModalOpen} onClose={() => setCvModalOpen(false)} size="full" closeOnOverlayClick>
+                <fm.div
+                  initial={{ scale: 0.7, opacity: 0, rotate: -10 }}
+                  animate={{ scale: 1, opacity: 1, rotate: 0 }}
+                  exit={{ scale: 0.7, opacity: 0, rotate: 10 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                  className="relative w-full h-[90vh] max-h-[90vh] flex flex-col items-center justify-center"
+                >
+                  <Button
+                    className="absolute top-2 right-2 z-10"
+                    variant="secondary"
+                    size="sm"
+                    onClick={() => setCvModalOpen(false)}
+                  >
+                    Cerrar
+                  </Button>
+                  <div className="w-full h-full flex-1 flex flex-col items-center justify-center">
+                    {isMobile ? (
+                      <div className="flex flex-col items-center justify-center w-full h-full p-4">
+                        <span className="mb-4 text-dark-200 text-center">En dispositivos móviles, el CV no puede visualizarse directamente.<br/>Descárgalo aquí:</span>
+                        <a
+                          href="/CurriculumProfesionalCarlos.pdf"
+                          download
+                          className="mt-2 text-primary-400 underline text-center text-lg font-semibold"
+                        >
+                          Descargar CV
+                        </a>
+                      </div>
+                    ) : (
+                      <iframe
+                        src="/CurriculumProfesionalCarlos.pdf"
+                        title="CV Carlos Hidalgo"
+                        className="w-full h-full min-h-[60vh] max-h-[80vh] rounded-xl border-2 border-primary-400 shadow-2xl bg-white"
+                        style={{ minHeight: '60vh', maxHeight: '80vh' }}
+                        allowFullScreen
+                      />
+                    )}
+                  </div>
+                </fm.div>
+              </Modal>
             </div>
           </div>
           <div className="mb-6">
@@ -150,14 +182,47 @@ const AboutSection = () => {
               <div className="flex items-center gap-2 font-semibold text-dark-100 mb-1 text-lg">
                 <FaTools className="text-secondary-400" /> Habilidades Técnicas
               </div>
-              <ul className="list-disc list-inside text-dark-300 text-base ml-7">
-                <li>Python (Django, FastAPI)</li>
-                <li>JavaScript (Angular, React)</li>
-                <li>Bases de datos: SQL (MySQL, SQLite) y NoSQL (Firebase)</li>
-                <li>Git y control de versiones</li>
-                <li>Desarrollo web backend y móvil (Ionic)</li>
-                <li>Despliegue: Vercel, Railway</li>
-              </ul>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-2">
+                <div className="flex items-center gap-2 text-dark-200 text-base">
+                  <SiPython className="text-blue-400 text-xl" /> Python
+                </div>
+                <div className="flex items-center gap-2 text-dark-200 text-base">
+                  <SiDjango className="text-green-700 text-xl" /> Django
+                </div>
+                <div className="flex items-center gap-2 text-dark-200 text-base">
+                  <SiFastapi className="text-green-500 text-xl" /> FastAPI
+                </div>
+                <div className="flex items-center gap-2 text-dark-200 text-base">
+                  <SiJavascript className="text-yellow-400 text-xl" /> JavaScript
+                </div>
+                <div className="flex items-center gap-2 text-dark-200 text-base">
+                  <SiTypescript className="text-blue-500 text-xl" /> TypeScript
+                </div>
+                <div className="flex items-center gap-2 text-dark-200 text-base">
+                  <FaReact className="text-cyan-400 text-xl" /> React
+                </div>
+                <div className="flex items-center gap-2 text-dark-200 text-base">
+                  <FaVuejs className="text-green-400 text-xl" /> Vue.js
+                </div>
+                <div className="flex items-center gap-2 text-dark-200 text-base">
+                  <FaNodeJs className="text-green-600 text-xl" /> Node.js
+                </div>
+                <div className="flex items-center gap-2 text-dark-200 text-base">
+                  <SiPostgresql className="text-blue-700 text-xl" /> PostgreSQL
+                </div>
+                <div className="flex items-center gap-2 text-dark-200 text-base">
+                  <FaDatabase className="text-indigo-400 text-xl" /> SQL
+                </div>
+                <div className="flex items-center gap-2 text-dark-200 text-base">
+                  <FaDocker className="text-blue-500 text-xl" /> Docker
+                </div>
+                <div className="flex items-center gap-2 text-dark-200 text-base">
+                  <FaGitAlt className="text-orange-400 text-xl" /> Git
+                </div>
+                <div className="flex items-center gap-2 text-dark-200 text-base">
+                  <SiVercel className="text-black text-xl" /> Vercel
+                </div>
+              </div>
             </div>
             <div>
               <div className="flex items-center gap-2 font-semibold text-dark-100 mb-1 text-lg">

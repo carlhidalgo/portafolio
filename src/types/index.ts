@@ -166,7 +166,7 @@ export interface CardProps extends BaseComponentProps {
 }
 
 // Event types
-export interface CustomEvent<T = any> extends Event {
+export interface CustomEvent<T = unknown> extends Event {
   detail: T;
 }
 

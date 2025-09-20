@@ -26,7 +26,7 @@ const Card = ({
   hover = false,
   ...props
 }: CardProps) => {
-  const baseClasses = 'bg-dark-800/50 backdrop-blur-sm border border-dark-700 rounded-xl shadow-xl transition-all duration-300';
+  const baseClasses = 'bg-dark-800/50 backdrop-blur-sm border border-dark-700 rounded-xl shadow-xl transition-all duration-300 hover:scale-[1.03] hover:shadow-glow focus-within:scale-[1.03] focus-within:shadow-glow';
   const variants = {
     default: 'p-6',
     featured: 'p-8 border-primary-500/50 shadow-glow',
@@ -45,7 +45,8 @@ const Card = ({
         <div className="mb-4 overflow-hidden rounded-lg">
           <img
             src={image}
-            alt={title || 'Card image'}
+            alt={title ? `Imagen de ${title}` : 'Card image'}
+            loading="lazy"
             className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
           />
         </div>
@@ -69,8 +70,8 @@ const Card = ({
   ];
 
   // Filtra props nativos para <a>
-  function filterAnchorProps(obj: any) {
-    const result: any = {};
+  function filterAnchorProps(obj: Record<string, unknown>) {
+    const result: Record<string, unknown> = {};
     Object.keys(obj).forEach(key => {
       if (!customProps.includes(key)) {
         result[key] = obj[key];
@@ -80,8 +81,8 @@ const Card = ({
   }
 
   // Filtra props nativos para <div>
-  function filterDivProps(obj: any) {
-    const result: any = {};
+  function filterDivProps(obj: Record<string, unknown>) {
+    const result: Record<string, unknown> = {};
     Object.keys(obj).forEach(key => {
       if (!customProps.includes(key)) {
         result[key] = obj[key];
@@ -96,6 +97,9 @@ const Card = ({
       <a
         href={href}
         className={classes}
+        role="article"
+        tabIndex={0}
+        aria-label={title || undefined}
         {...anchorProps}
       >
         {content}
@@ -104,7 +108,7 @@ const Card = ({
   }
   const divProps = filterDivProps(props);
   return (
-    <div className={classes} {...divProps}>
+    <div className={classes} role="article" tabIndex={0} aria-label={title || undefined} {...divProps}>
       {content}
     </div>
   );

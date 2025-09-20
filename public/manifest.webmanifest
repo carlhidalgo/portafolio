@@ -1,0 +1,28 @@
+{
+  "name": "Carlos Hidalgo | Portafolio 3D",
+  "short_name": "Portafolio3D",
+  "description": "Portafolio profesional de Carlos Hidalgo. Proyectos 3D, animaciones, UI moderna, React, TypeScript, Tailwind, Framer Motion.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "lang": "es",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/vite.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/vite.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}

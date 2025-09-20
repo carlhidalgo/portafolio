@@ -1,3 +1,12 @@
+# Portafolio 3D de Carlos Hidalgo
+
+![Vercel](https://img.shields.io/badge/deploy-vercel-black?logo=vercel&style=for-the-badge)
+![Build](https://img.shields.io/badge/build-passing-brightgreen?style=for-the-badge)
+![React](https://img.shields.io/badge/React-2025-61DAFB?logo=react&logoColor=white&style=for-the-badge)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white&style=for-the-badge)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.x-38BDF8?logo=tailwindcss&logoColor=white&style=for-the-badge)
+![Vite](https://img.shields.io/badge/Vite-7.x-646CFF?logo=vite&logoColor=white&style=for-the-badge)
+
 gh auth login
 # React + TypeScript + Vite
 # Portafolio 3D de Carlos Hidalgo

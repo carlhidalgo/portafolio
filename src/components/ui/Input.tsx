@@ -3,7 +3,7 @@ import { clsx } from 'clsx';
 
 interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   label?: string;
-  error?: string;
+  error?: string | undefined;
   helperText?: string;
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;

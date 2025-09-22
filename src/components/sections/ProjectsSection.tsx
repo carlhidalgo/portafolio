@@ -2,7 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui';
 import { ExternalLink, Github } from 'lucide-react';
-import { featuredProjects } from '@/data/projects';
+import { projects } from '@/data/projects';
+
 import type { Project, ProjectStatus } from '@/types';
 
 // Helpers para status
@@ -110,7 +111,6 @@ const ProjectCard = ({ project }: { project: Project }) => {
             <video
               ref={videoRef}
               src="/tallerrayomakeen.mp4"
-              poster={project.image}
               muted
               loop
               playsInline
@@ -121,7 +121,6 @@ const ProjectCard = ({ project }: { project: Project }) => {
             <video
               ref={videoRef}
               src="/fastapirisk.mp4"
-              poster={project.image}
               muted
               loop
               playsInline
@@ -191,6 +190,8 @@ const ProjectCard = ({ project }: { project: Project }) => {
 };
 
 const ProjectsSection = () => {
+  const featuredProjects = projects.filter(project => project.featured);
+
   return (
     <section
       id="proyectos"

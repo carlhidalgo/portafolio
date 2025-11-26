@@ -4,3 +4,5 @@ export { default as FileUpload } from './FileUpload';
 export { default as Modal } from './Modal';
 export { default as Input } from './Input';
 export { default as Textarea } from './Textarea';
+export * from './ScrollToTopButton';
+export * from './MovingLights';

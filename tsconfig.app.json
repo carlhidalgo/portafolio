@@ -16,6 +16,8 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
+  /* ...existing code... */
+
     /* Path mapping */
     "baseUrl": ".",
     "paths": {

@@ -1,7 +1,8 @@
 import { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui';
-import { ParticleField } from '@/components/3d';
+import React, { Suspense } from 'react';
+const ParticleField = React.lazy(() => import('@/components/3d/ParticleField'));
 import { useScroll } from '@/hooks/useScroll';
 import { usePortfolio } from '@/contexts/PortfolioContext';
 
@@ -57,14 +58,16 @@ const HeroSection = () => {
       </div>
 
       {/* Background Particles */}
-      <ParticleField
-        count={3000}
-        size={0.015}
-        speed={0.5}
-        color="#3b82f6"
-        opacity={0.4}
-        className="z-0"
-      />
+      <Suspense fallback={null}>
+        <ParticleField
+          count={1200}
+          size={0.015}
+          speed={0.5}
+          color="#3b82f6"
+          opacity={0.4}
+          className="z-0"
+        />
+      </Suspense>
       
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-dark-900/50 via-dark-800/30 to-primary-900/20 z-10" />

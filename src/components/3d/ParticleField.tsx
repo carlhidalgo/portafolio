@@ -77,7 +77,7 @@ const Particles = ({
 };
 
 const ParticleField = ({
-  count = 2000,
+  count = 800,
   size = 0.02,
   speed = 1,
   color = '#3b82f6',

@@ -1,96 +1,21 @@
-// Botón flotante scroll-to-top
-function ScrollToTopButton() {
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const handleScroll = () => {
-      const aboutSection = document.getElementById('sobre-mi');
-      if (!aboutSection) return;
-      const rect = aboutSection.getBoundingClientRect();
-      setVisible(rect.top < -100); // Aparece cuando ya pasaste Sobre Mí
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-  if (!visible) return null;
-  return (
-    <button
-      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-      className="fixed bottom-8 right-8 z-50 bg-primary-500 hover:bg-primary-400 text-white rounded-full shadow-lg p-3 transition-all duration-300 animate-bounce"
-      aria-label="Subir arriba"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-7 h-7">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
-      </svg>
-    </button>
-  );
-}
-
-import { useEffect, useState, useRef } from 'react';
-// Componente para luces animadas que siguen el mouse
-function MovingLights() {
-  const lightRef1 = useRef<HTMLDivElement | null>(null);
-  const lightRef2 = useRef<HTMLDivElement | null>(null);
-  useEffect(() => {
-    const handleMove = (e: MouseEvent) => {
-      const x = e.clientX / window.innerWidth;
-      const y = e.clientY / window.innerHeight;
-      if (lightRef1.current) {
-        lightRef1.current.style.left = `${x * 100}%`;
-        lightRef1.current.style.top = `${y * 100}%`;
-      }
-      if (lightRef2.current) {
-        lightRef2.current.style.left = `${(1 - x) * 100}%`;
-        lightRef2.current.style.top = `${(1 - y) * 100}%`;
-      }
-    };
-    window.addEventListener('mousemove', handleMove);
-    return () => window.removeEventListener('mousemove', handleMove);
-  }, []);
-  return (
-    <>
-      <div ref={lightRef1} className="fixed w-64 h-64 bg-cyan-400/10 rounded-full blur-3xl pointer-events-none z-10 transition-all duration-300" style={{ left: '50%', top: '50%', transform: 'translate(-50%,-50%)' }} />
-      <div ref={lightRef2} className="fixed w-80 h-80 bg-pink-400/10 rounded-full blur-3xl pointer-events-none z-10 transition-all duration-300" style={{ left: '60%', top: '60%', transform: 'translate(-50%,-50%)' }} />
-    </>
-  );
-}
+import React, { Suspense } from 'react';
 import { PortfolioProvider } from '@/contexts/PortfolioProvider';
 import { HeroSection, AboutSection, ProjectsSection, ContactSection } from '@/components/sections';
+import { ScrollToTopButton, MovingLights } from '@/components/ui';
+import { useTheme } from '@/hooks/useTheme';
+import { useParallax } from '@/hooks/useParallax';
 
-import ParticleField from '@/components/3d/ParticleField';
-import FloatingCube from '@/components/3d/FloatingCube';
-
+const ParticleField = React.lazy(() => import('@/components/3d/ParticleField'));
+const FloatingCube = React.lazy(() => import('@/components/3d/FloatingCube'));
 
 const App = () => {
-  // Detectar preferencia de color del sistema y aplicar clase 'dark' al html
-  useEffect(() => {
-    const root = window.document.documentElement;
-    const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const applyTheme = () => {
-      if (darkQuery.matches) {
-        root.classList.add('dark');
-      } else {
-        root.classList.remove('dark');
-      }
-    };
-    applyTheme();
-    darkQuery.addEventListener('change', applyTheme);
-    return () => darkQuery.removeEventListener('change', applyTheme);
-  }, []);
-
-  // Parallax para el fondo 3D
-  const [parallaxY, setParallaxY] = useState(0);
-  useEffect(() => {
-    const handleScroll = () => {
-      setParallaxY(window.scrollY * 0.18);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  useTheme();
+  const parallaxY = useParallax(0.18);
 
   return (
     <PortfolioProvider>
       <div className="min-h-screen relative text-dark-50 dark:text-dark-900 transition-colors duration-500 overflow-x-hidden">
-  {/* Fondo 3D global con parallax, cubos flotantes y luces animadas */}
+        {/* Fondo 3D global con parallax, cubos flotantes y luces animadas */}
         <div
           className="fixed inset-0 z-0 flex items-center justify-center pointer-events-none select-none"
           style={{ transform: `translateY(${parallaxY}px)` }}
@@ -104,22 +29,24 @@ const App = () => {
           />
           {/* Cubos 3D flotantes */}
           <div className="absolute inset-0 w-full h-full pointer-events-none">
-            <div className="absolute left-[10%] top-[20%] w-32 h-32 opacity-70">
-              <FloatingCube color="#38bdf8" opacity={0.7} scale={[1.2,1.2,1.2]} rotation={[0.2,0.4,0.1]} />
-            </div>
-            <div className="absolute right-[12%] top-[35%] w-24 h-24 opacity-60">
-              <FloatingCube color="#f472b6" opacity={0.6} scale={[0.8,0.8,0.8]} rotation={[0.1,0.2,0.3]} />
-            </div>
-            <div className="absolute left-[25%] bottom-[18%] w-20 h-20 opacity-50">
-              <FloatingCube color="#facc15" opacity={0.5} scale={[0.7,0.7,0.7]} rotation={[0.3,0.1,0.2]} />
-            </div>
-            <div className="absolute right-[20%] bottom-[10%] w-28 h-28 opacity-65">
-              <FloatingCube color="#a78bfa" opacity={0.65} scale={[1,1,1]} rotation={[0.2,0.3,0.2]} />
-            </div>
-            {/* Cubo central interactivo */}
-            <div className="absolute left-1/2 top-1/2 w-40 h-40 opacity-80" style={{ transform: 'translate(-50%,-50%)' }}>
-              <FloatingCube color="#f472b6" opacity={0.8} scale={[1.5,1.5,1.5]} rotation={[0.2,0.2,0.2]} text="👾" />
-            </div>
+            <Suspense fallback={null}>
+              <div className="absolute left-[10%] top-[20%] w-32 h-32 opacity-70">
+                <FloatingCube color="#38bdf8" opacity={0.7} scale={[1.2, 1.2, 1.2]} rotation={[0.2, 0.4, 0.1]} />
+              </div>
+              <div className="absolute right-[12%] top-[35%] w-24 h-24 opacity-60">
+                <FloatingCube color="#f472b6" opacity={0.6} scale={[0.8, 0.8, 0.8]} rotation={[0.1, 0.2, 0.3]} />
+              </div>
+              <div className="absolute left-[25%] bottom-[18%] w-20 h-20 opacity-50">
+                <FloatingCube color="#facc15" opacity={0.5} scale={[0.7, 0.7, 0.7]} rotation={[0.3, 0.1, 0.2]} />
+              </div>
+              <div className="absolute right-[20%] bottom-[10%] w-28 h-28 opacity-65">
+                <FloatingCube color="#a78bfa" opacity={0.65} scale={[1, 1, 1]} rotation={[0.2, 0.3, 0.2]} />
+              </div>
+              {/* Cubo central interactivo */}
+              <div className="absolute left-1/2 top-1/2 w-40 h-40 opacity-80" style={{ transform: 'translate(-50%,-50%)' }}>
+                <FloatingCube color="#f472b6" opacity={0.8} scale={[1.5, 1.5, 1.5]} rotation={[0.2, 0.2, 0.2]} text="\ud83d\udc7e" />
+              </div>
+            </Suspense>
           </div>
           {/* Luces animadas que siguen el mouse */}
           <MovingLights />
@@ -128,7 +55,9 @@ const App = () => {
         </div>
         {/* Partículas luminosas */}
         <div className="fixed inset-0 z-10 pointer-events-none">
-          <ParticleField count={1200} size={0.04} speed={1.2} color="#38bdf8" opacity={0.45} />
+          <Suspense fallback={null}>
+            <ParticleField count={800} size={0.04} speed={1.2} color="#38bdf8" opacity={0.45} />
+          </Suspense>
         </div>
         <div className="relative z-20">
           <HeroSection />

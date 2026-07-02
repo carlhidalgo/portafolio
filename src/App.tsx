@@ -1,9 +1,11 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useRef } from 'react';
 import { PortfolioProvider } from '@/contexts/PortfolioProvider';
 import { HeroSection, AboutSection, ProjectsSection, ContactSection } from '@/components/sections';
-import { ScrollToTopButton, MovingLights } from '@/components/ui';
+import { ScrollToTopButton, MovingLights, Navbar } from '@/components/ui';
 import { useTheme } from '@/hooks/useTheme';
 import { useParallax } from '@/hooks/useParallax';
+import { Canvas } from '@react-three/fiber';
+import { View } from '@react-three/drei';
 
 const ParticleField = React.lazy(() => import('@/components/3d/ParticleField'));
 const FloatingCube = React.lazy(() => import('@/components/3d/FloatingCube'));
@@ -11,10 +13,17 @@ const FloatingCube = React.lazy(() => import('@/components/3d/FloatingCube'));
 const App = () => {
   useTheme();
   const parallaxY = useParallax(0.18);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   return (
     <PortfolioProvider>
-      <div className="min-h-screen relative text-dark-50 dark:text-dark-900 transition-colors duration-500 overflow-x-hidden">
+      <div 
+        ref={containerRef} 
+        className="min-h-screen relative text-dark-50 dark:text-dark-900 transition-colors duration-500 overflow-x-hidden"
+      >
+        {/* Barra de navegación flotante */}
+        <Navbar />
+
         {/* Fondo 3D global con parallax, cubos flotantes y luces animadas */}
         <div
           className="fixed inset-0 z-0 flex items-center justify-center pointer-events-none select-none"
@@ -44,7 +53,7 @@ const App = () => {
               </div>
               {/* Cubo central interactivo */}
               <div className="absolute left-1/2 top-1/2 w-40 h-40 opacity-80" style={{ transform: 'translate(-50%,-50%)' }}>
-                <FloatingCube color="#f472b6" opacity={0.8} scale={[1.5, 1.5, 1.5]} rotation={[0.2, 0.2, 0.2]} text="\ud83d\udc7e" />
+                <FloatingCube color="#f472b6" opacity={0.8} scale={[1.5, 1.5, 1.5]} rotation={[0.2, 0.2, 0.2]} text="👾" />
               </div>
             </Suspense>
           </div>
@@ -86,6 +95,15 @@ const App = () => {
             }
           `}
         </style>
+
+        {/* Único Canvas global para todos los Views 3D */}
+        <Canvas
+          eventSource={containerRef as unknown as React.MutableRefObject<HTMLDivElement>}
+          className="fixed inset-0 pointer-events-none z-0"
+          style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh' }}
+        >
+          <View.Port />
+        </Canvas>
       </div>
     </PortfolioProvider>
   );

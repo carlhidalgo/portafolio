@@ -89,12 +89,10 @@ const ProjectCard = ({ project }: { project: Project }) => {
       <div className="relative mb-4 flex flex-col items-center">
         {/* Sub-tarjeta para el video */}
         <div className="w-full bg-dark-900/80 border border-primary-900/40 rounded-xl shadow-lg mb-3 overflow-visible relative flex items-center justify-center min-h-[192px]">
-          <img
-            src="https://pngtree.com/freebackground/glowing-neon-cyberpunk-geometric-texture-in-vibrant-pink-and-black_13582643.html" 
-            alt={`Fondo 3D de la tarjeta de ${project.title}`}
-            loading="lazy"
-            className="absolute inset-0 w-full h-full object-cover scale-110 opacity-60 pointer-events-none z-0"
-            style={{ filter: 'blur(2px) drop-shadow(0 0 32px #00f2fe)' }}
+          {/* Fondo gradiente de estilo cyberpunk */}
+          <div 
+            className="absolute inset-0 w-full h-full rounded-xl opacity-40 bg-gradient-to-tr from-primary-900 via-purple-950 to-accent-950 pointer-events-none z-0"
+            style={{ filter: 'blur(2px) drop-shadow(0 0 20px rgba(0, 242, 254, 0.35))' }}
           />
           {project.id === '1' && (
             <video
@@ -121,6 +119,16 @@ const ProjectCard = ({ project }: { project: Project }) => {
             <video
               ref={videoRef}
               src="/fastapirisk.mp4"
+              muted
+              loop
+              playsInline
+              className="relative w-full h-48 max-h-48 object-cover z-10 rounded-xl"
+            />
+          )}
+          {project.id === '7' && (
+            <video
+              ref={videoRef}
+              src="/dentalcare.mp4"
               muted
               loop
               playsInline

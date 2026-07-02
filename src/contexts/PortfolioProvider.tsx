@@ -20,10 +20,9 @@ export const PortfolioProvider = ({ children }: PortfolioProviderProps) => {
         setData(prevData => ({
           ...prevData,
           ...parsedData,
-          // Mantener los datos estáticos que no se pueden modificar
-          projects: prevData.projects,
-          experience: prevData.experience,
-          skills: prevData.skills,
+          projects: parsedData.projects || prevData.projects,
+          experience: parsedData.experience || prevData.experience,
+          skills: parsedData.skills || prevData.skills,
         }));
       } catch (error) {
         console.error('Error loading portfolio data:', error);

@@ -1,6 +1,6 @@
 import { useRef, useMemo } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { Points, PointMaterial } from '@react-three/drei';
+import { useFrame } from '@react-three/fiber';
+import { Points, PointMaterial, View, PerspectiveCamera } from '@react-three/drei';
 import * as THREE from 'three';
 
 interface ParticleFieldProps {
@@ -85,21 +85,17 @@ const ParticleField = ({
   className = '',
 }: ParticleFieldProps) => {
   return (
-    <div className={`absolute inset-0 ${className}`}>
-      <Canvas
-        camera={{ position: [0, 0, 5], fov: 75 }}
-        style={{ background: 'transparent' }}
-      >
-        <ambientLight intensity={0.5} />
-        <Particles
-          count={count}
-          size={size}
-          speed={speed}
-          color={color}
-          opacity={opacity}
-        />
-      </Canvas>
-    </div>
+    <View className={`absolute inset-0 ${className}`}>
+      <PerspectiveCamera makeDefault position={[0, 0, 5]} fov={75} />
+      <ambientLight intensity={0.5} />
+      <Particles
+        count={count}
+        size={size}
+        speed={speed}
+        color={color}
+        opacity={opacity}
+      />
+    </View>
   );
 };
 

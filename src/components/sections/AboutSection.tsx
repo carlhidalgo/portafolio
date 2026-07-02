@@ -1,14 +1,12 @@
 
 
 import { useState } from 'react';
-// Simple mobile detection
-const isMobile = typeof window !== 'undefined' && /Mobi|Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
 import { Modal, Button } from '../ui';
 import { motion as fm } from 'framer-motion';
 import { motion } from 'framer-motion';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
-import { FaMapMarkerAlt, FaEnvelope, FaPhoneAlt, FaUserTie, FaGraduationCap, FaCertificate, FaTools, FaUserFriends, FaReact, FaVuejs, FaNodeJs, FaDatabase, FaDocker, FaGitAlt } from 'react-icons/fa';
-import { SiPython, SiDjango, SiFastapi, SiTypescript, SiJavascript, SiPostgresql, SiVercel } from 'react-icons/si';
+import { FaMapMarkerAlt, FaEnvelope, FaPhoneAlt, FaUserTie, FaGraduationCap, FaCertificate, FaTools, FaUserFriends, FaReact, FaNodeJs, FaDatabase, FaDocker, FaGitAlt, FaJava, FaAngular, FaAndroid } from 'react-icons/fa';
+import { SiPython, SiDjango, SiFastapi, SiTypescript, SiJavascript, SiVercel, SiKotlin, SiIonic, SiMysql, SiSqlite, SiFirebase, SiRailway, SiRedhat } from 'react-icons/si';
 import { motion as m } from 'framer-motion';
 
 const AboutSection = () => {
@@ -37,7 +35,7 @@ const AboutSection = () => {
             Sobre Mí
           </h2>
           <p className="text-dark-300 text-lg text-center mb-8 max-w-2xl mx-auto leading-relaxed">
-            Analista Programador con experiencia en desarrollo full stack utilizando <span className="font-semibold text-primary-400">Python</span>, <span className="font-semibold text-primary-400">JavaScript</span>, <span className="font-semibold text-primary-400">Node.js</span>, <span className="font-semibold text-primary-400">Django</span> y bases de datos <span className="font-semibold text-primary-400">SQL</span>. Certificado en ciberseguridad por Google y Cisco, con habilidades en resolución de problemas, trabajo en equipo y adaptación a entornos dinámicos. Apasionado por aplicar la tecnología para optimizar procesos y resolver desafíos técnicos.
+            Desarrollador de software con formación en análisis y programación computacional, especializado en <span className="font-semibold text-primary-400">Python</span>, <span className="font-semibold text-primary-400">JavaScript</span>, <span className="font-semibold text-primary-400">Kotlin</span> y <span className="font-semibold text-primary-400">Java</span>. Experiencia en desarrollo full-stack backend y móvil con frameworks como <span className="font-semibold text-primary-400">Django</span>, <span className="font-semibold text-primary-400">FastAPI</span>, <span className="font-semibold text-primary-400">Angular</span> y <span className="font-semibold text-primary-400">React</span>. Certificado por Google, Microsoft Azure, Cisco y Red Hat en TI y ciberseguridad. Apasionado por construir soluciones escalables, colaborar en equipo y aprender de forma continua.
           </p>
           <div className="flex flex-col md:flex-row md:items-center md:gap-8 mb-8">
             <div className="flex-1 mb-4 md:mb-0 space-y-1">
@@ -92,27 +90,118 @@ const AboutSection = () => {
                   >
                     Cerrar
                   </Button>
-                  <div className="w-full h-full flex-1 flex flex-col items-center justify-center">
-                    {isMobile ? (
-                      <div className="flex flex-col items-center justify-center w-full h-full p-4">
-                        <span className="mb-4 text-dark-200 text-center">En dispositivos móviles, el CV no puede visualizarse directamente.<br/>Descárgalo aquí:</span>
-                        <a
-                          href="/CurriculumProfesionalCarlos.pdf"
-                          download
-                          className="mt-2 text-primary-400 underline text-center text-lg font-semibold"
-                        >
-                          Descargar CV
-                        </a>
+                  <div className="w-full h-full flex-1 flex flex-col overflow-y-auto px-4 md:px-8 py-6 text-dark-100 bg-dark-950/95 rounded-2xl max-w-4xl mx-auto scrollbar-thin mt-12 relative">
+                    <Button
+                      className="absolute top-4 right-4 z-10"
+                      variant="secondary"
+                      size="sm"
+                      onClick={() => setCvModalOpen(false)}
+                    >
+                      Cerrar
+                    </Button>
+                    
+                    {/* Encabezado del CV */}
+                    <div className="text-center border-b border-dark-800 pb-6 mb-6 mt-8">
+                      <h3 className="text-3xl font-bold text-gradient mb-2">Carlos Andrés Hidalgo de la Fuente</h3>
+                      <p className="text-xl text-primary-400 font-semibold mb-4">Desarrollador de Software</p>
+                      <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-dark-300">
+                        <span>📍 Valparaíso, Chile</span>
+                        <span>✉️ karlozoh@gmail.com</span>
+                        <span>📞 (+56) 993516225</span>
+                        <a href="https://linkedin.com/in/carlos-hidalgo-de-la-fuente-a02248246" target="_blank" rel="noopener noreferrer" className="hover:text-primary-400 underline">LinkedIn</a>
+                        <a href="https://github.com/carlhidalgo" target="_blank" rel="noopener noreferrer" className="hover:text-primary-400 underline">GitHub</a>
                       </div>
-                    ) : (
-                      <iframe
-                        src="/CurriculumProfesionalCarlos.pdf"
-                        title="CV Carlos Hidalgo"
-                        className="w-full h-full min-h-[60vh] max-h-[80vh] rounded-xl border-2 border-primary-400 shadow-2xl bg-white"
-                        style={{ minHeight: '60vh', maxHeight: '80vh' }}
-                        allowFullScreen
-                      />
-                    )}
+                    </div>
+
+                    {/* Botón de Descarga del PDF */}
+                    <div className="flex justify-center mb-6">
+                      <Button
+                        href="/CurriculumProfesionalCarlos.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        download
+                        variant="primary"
+                        size="md"
+                      >
+                        Descargar PDF Completo
+                      </Button>
+                    </div>
+
+                    {/* Perfil Profesional */}
+                    <div className="mb-6">
+                      <h4 className="text-lg font-bold text-primary-400 border-b border-dark-800 pb-1 mb-3">Perfil Profesional</h4>
+                      <p className="text-dark-200 text-sm leading-relaxed">
+                        Desarrollador de software con formación en análisis y programación computacional, especializado en Python, JavaScript, Kotlin y Java. Experiencia en desarrollo full-stack backend y móvil con frameworks como Django, FastAPI, Angular y React. Certificado por Google, Microsoft Azure, Cisco y Red Hat en TI y ciberseguridad. Apasionado por construir soluciones scalables, colaborar en equipo y aprender de forma continua.
+                      </p>
+                    </div>
+
+                    {/* Experiencia Laboral */}
+                    <div className="mb-6">
+                      <h4 className="text-lg font-bold text-primary-400 border-b border-dark-800 pb-1 mb-3">Experiencia Laboral</h4>
+                      <div className="space-y-4">
+                        <div>
+                          <div className="flex justify-between items-start flex-wrap gap-1">
+                            <h5 className="font-semibold text-dark-50 text-sm">Desarrollador Full Stack — Práctica Profesional</h5>
+                            <span className="text-xs text-dark-400">Sep 2025 – Dic 2025</span>
+                          </div>
+                          <p className="text-xs text-primary-400 font-medium mb-2">Aurafy · Chile</p>
+                          <ul className="list-disc list-inside text-xs text-dark-300 space-y-1 ml-2">
+                            <li>Desarrollo de aplicaciones web full-stack como parte de la práctica profesional integradora.</li>
+                            <li>Implementación de funcionalidades backend con Python y APIs REST en un equipo de desarrollo real.</li>
+                            <li>Participación en ciclos ágiles (Scrum), revisiones de código (code reviews) y despliegue en plataformas cloud.</li>
+                          </ul>
+                        </div>
+                        <div>
+                          <div className="flex justify-between items-start flex-wrap gap-1">
+                            <h5 className="font-semibold text-dark-50 text-sm">Desarrollador Web</h5>
+                            <span className="text-xs text-dark-400">Ene 2024 – Dic 2025</span>
+                          </div>
+                          <p className="text-xs text-primary-400 font-medium mb-2">Proyectos Freelance / Independientes · Chile</p>
+                          <ul className="list-disc list-inside text-xs text-dark-300 space-y-1 ml-2">
+                            <li>Desarrollo y mantenimiento de aplicaciones web con Python (Django/FastAPI) y JavaScript (Angular/React).</li>
+                            <li>Diseño e implementación de bases de datos MySQL y Firebase para proyectos de distinta escala.</li>
+                            <li>Despliegue y gestión de aplicaciones en Vercel y Railway.</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Educación */}
+                    <div className="mb-6">
+                      <h4 className="text-lg font-bold text-primary-400 border-b border-dark-800 pb-1 mb-3">Educación</h4>
+                      <div className="space-y-2 text-sm text-dark-200">
+                        <div className="flex justify-between flex-wrap gap-1">
+                          <span><strong>Duoc UC</strong>, Ingeniería en Informática (Mención IA)</span>
+                          <span className="text-xs text-dark-400">2026 - 2028 (En curso)</span>
+                        </div>
+                        <div className="flex justify-between flex-wrap gap-1">
+                          <span><strong>Universidad Andrés Bello</strong>, Bootcamp Desarrollo Móvil Android</span>
+                          <span className="text-xs text-dark-400">2025</span>
+                        </div>
+                        <div className="flex justify-between flex-wrap gap-1">
+                          <span><strong>Duoc UC</strong>, Analista Programador Computacional</span>
+                          <span className="text-xs text-dark-400">2023 - 2025</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Certificaciones */}
+                    <div className="mb-6">
+                      <h4 className="text-lg font-bold text-primary-400 border-b border-dark-800 pb-1 mb-3">Certificaciones Destacadas</h4>
+                      <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1.5 text-xs text-dark-200 list-disc list-inside">
+                        <li>Red Hat Certified System Admin I (RH124)</li>
+                        <li>Android Trainee (Sence / UNAB)</li>
+                        <li>Google Cybersecurity Professional</li>
+                        <li>Cisco CCST Cybersecurity</li>
+                        <li>Microsoft Azure AI Fundamentals (AI-900)</li>
+                        <li>Microsoft Azure Fundamentals (AZ-900)</li>
+                        <li>Google IT Support Professional</li>
+                        <li>Python Institute PCEP</li>
+                        <li>Oracle Cloud Infrastructure Foundations</li>
+                        <li>GitHub Foundations</li>
+                        <li>Big Data Professional Certificate</li>
+                      </ul>
+                    </div>
                   </div>
                 </fm.div>
               </Modal>
@@ -125,7 +214,11 @@ const AboutSection = () => {
               </m.span>
               Educación
             </div>
-            <div className="ml-7 text-dark-200">2023 - 2025: Duoc UC, Analista Programador Computacional</div>
+            <div className="ml-7 text-dark-200 space-y-1">
+              <div>2026 - 2028: Duoc UC, Ingeniería en Informática (Mención Inteligencia Artificial) - En curso</div>
+              <div>2025: Universidad Andrés Bello, Bootcamp Desarrollo de Aplicaciones Móviles Android</div>
+              <div>2023 - 2025: Duoc UC, Analista Programador Computacional</div>
+            </div>
           </div>
           <div className="mb-8">
             <div className="flex items-center gap-2 font-semibold text-dark-100 mb-2 text-lg">
@@ -175,6 +268,21 @@ const AboutSection = () => {
                   <FaCertificate className="text-primary-400" /> GitHub Foundations
                 </span>
               </a>
+              <a href="https://www.credly.com/badges/74b99dff-e849-45d1-bc90-3e24ee95aed5/linked_in_profile" target="_blank" rel="noopener noreferrer">
+                <span className="flex items-center gap-2 px-4 py-2 rounded-lg border border-primary-400 text-primary-300 bg-dark-800/60 hover:bg-primary-900/20 transition font-semibold shadow-sm cursor-pointer">
+                  <FaCertificate className="text-primary-400" /> Red Hat Certified System Admin I
+                </span>
+              </a>
+              <a href="https://www.acreditta.com/credential/c9397dfd-65fa-4a93-bc28-3b1816638a70?resource_type=badge&resource=c9397dfd-65fa-4a93-bc28-3b1816638a70" target="_blank" rel="noopener noreferrer">
+                <span className="flex items-center gap-2 px-4 py-2 rounded-lg border border-primary-400 text-primary-300 bg-dark-800/60 hover:bg-primary-900/20 transition font-semibold shadow-sm cursor-pointer">
+                  <FaCertificate className="text-primary-400" /> Móviles Android Trainee (Sence)
+                </span>
+              </a>
+              <a href="https://verify.certiprof.com/certificado/TLZZZSHVLHZ-XXMTXQMSX-RDHHHFRJRL" target="_blank" rel="noopener noreferrer">
+                <span className="flex items-center gap-2 px-4 py-2 rounded-lg border border-primary-400 text-primary-300 bg-dark-800/60 hover:bg-primary-900/20 transition font-semibold shadow-sm cursor-pointer">
+                  <FaCertificate className="text-primary-400" /> Big Data Professional (BDPC)
+                </span>
+              </a>
             </div>
           </div>
           <div className="mb-6 grid md:grid-cols-2 gap-6">
@@ -202,13 +310,7 @@ const AboutSection = () => {
                   <FaReact className="text-cyan-400 text-xl" /> React
                 </div>
                 <div className="flex items-center gap-2 text-dark-200 text-base">
-                  <FaVuejs className="text-green-400 text-xl" /> Vue.js
-                </div>
-                <div className="flex items-center gap-2 text-dark-200 text-base">
                   <FaNodeJs className="text-green-600 text-xl" /> Node.js
-                </div>
-                <div className="flex items-center gap-2 text-dark-200 text-base">
-                  <SiPostgresql className="text-blue-700 text-xl" /> PostgreSQL
                 </div>
                 <div className="flex items-center gap-2 text-dark-200 text-base">
                   <FaDatabase className="text-indigo-400 text-xl" /> SQL
@@ -221,6 +323,36 @@ const AboutSection = () => {
                 </div>
                 <div className="flex items-center gap-2 text-dark-200 text-base">
                   <SiVercel className="text-black text-xl" /> Vercel
+                </div>
+                <div className="flex items-center gap-2 text-dark-200 text-base">
+                  <SiKotlin className="text-purple-500 text-xl" /> Kotlin
+                </div>
+                <div className="flex items-center gap-2 text-dark-200 text-base">
+                  <FaJava className="text-red-500 text-xl" /> Java
+                </div>
+                <div className="flex items-center gap-2 text-dark-200 text-base">
+                  <FaAngular className="text-red-600 text-xl" /> Angular
+                </div>
+                <div className="flex items-center gap-2 text-dark-200 text-base">
+                  <SiIonic className="text-blue-400 text-xl" /> Ionic
+                </div>
+                <div className="flex items-center gap-2 text-dark-200 text-base">
+                  <FaAndroid className="text-green-500 text-xl" /> Android
+                </div>
+                <div className="flex items-center gap-2 text-dark-200 text-base">
+                  <SiMysql className="text-blue-600 text-xl" /> MySQL
+                </div>
+                <div className="flex items-center gap-2 text-dark-200 text-base">
+                  <SiSqlite className="text-blue-400 text-xl" /> SQLite
+                </div>
+                <div className="flex items-center gap-2 text-dark-200 text-base">
+                  <SiFirebase className="text-yellow-500 text-xl" /> Firebase
+                </div>
+                <div className="flex items-center gap-2 text-dark-200 text-base">
+                  <SiRedhat className="text-red-600 text-xl" /> Linux (RHEL)
+                </div>
+                <div className="flex items-center gap-2 text-dark-200 text-base">
+                  <SiRailway className="text-white text-xl" /> Railway
                 </div>
               </div>
             </div>

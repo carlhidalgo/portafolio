@@ -14,6 +14,7 @@ interface ButtonProps extends BaseComponentProps {
   href?: string;
   target?: string;
   rel?: string;
+  download?: boolean | string;
 }
 
 const Button = ({

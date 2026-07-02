@@ -1,6 +1,6 @@
 import { useRef } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { Box, Text } from '@react-three/drei';
+import { useFrame } from '@react-three/fiber';
+import { Box, Text, View, PerspectiveCamera } from '@react-three/drei';
 import * as THREE from 'three';
 
 interface FloatingCubeProps {
@@ -79,23 +79,19 @@ const FloatingCube = ({
   className = '',
 }: FloatingCubeProps) => {
   return (
-    <div className={`w-full h-full ${className}`}>
-      <Canvas
-        camera={{ position: [0, 0, 5], fov: 75 }}
-        style={{ background: 'transparent' }}
-      >
-        <ambientLight intensity={0.6} />
-        <pointLight position={[10, 10, 10]} intensity={1} />
-        <AnimatedCube
-          position={position}
-          rotation={rotation}
-          scale={scale}
-          color={color}
-          opacity={opacity}
-          {...(typeof text === 'string' ? { text } : {})}
-        />
-      </Canvas>
-    </div>
+    <View className={`w-full h-full ${className}`}>
+      <PerspectiveCamera makeDefault position={[0, 0, 5]} fov={75} />
+      <ambientLight intensity={0.6} />
+      <pointLight position={[10, 10, 10]} intensity={1} />
+      <AnimatedCube
+        position={position}
+        rotation={rotation}
+        scale={scale}
+        color={color}
+        opacity={opacity}
+        {...(typeof text === 'string' ? { text } : {})}
+      />
+    </View>
   );
 };
 

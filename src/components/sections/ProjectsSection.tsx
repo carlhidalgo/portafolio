@@ -109,7 +109,6 @@ const ProjectCard = ({ project }: { project: Project }) => {
             <video
               ref={videoRef}
               src="/sparringlab.mp4"
-              poster={project.image}
               muted
               loop
               playsInline

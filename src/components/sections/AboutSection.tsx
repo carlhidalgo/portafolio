@@ -9,6 +9,30 @@ import { FaMapMarkerAlt, FaEnvelope, FaPhoneAlt, FaUserTie, FaGraduationCap, FaC
 import { SiPython, SiDjango, SiFastapi, SiTypescript, SiJavascript, SiVercel, SiKotlin, SiIonic, SiMysql, SiSqlite, SiFirebase, SiRailway, SiRedhat } from 'react-icons/si';
 import { motion as m } from 'framer-motion';
 
+const TECHNICAL_SKILLS = [
+  { name: 'Python', icon: SiPython, color: 'text-blue-400', hoverClass: 'hover:border-blue-400/40 hover:shadow-[0_0_12px_rgba(96,165,250,0.25)]' },
+  { name: 'Django', icon: SiDjango, color: 'text-green-700', hoverClass: 'hover:border-green-600/40 hover:shadow-[0_0_12px_rgba(22,163,74,0.25)]' },
+  { name: 'FastAPI', icon: SiFastapi, color: 'text-green-500', hoverClass: 'hover:border-green-400/40 hover:shadow-[0_0_12px_rgba(74,222,128,0.25)]' },
+  { name: 'JavaScript', icon: SiJavascript, color: 'text-yellow-400', hoverClass: 'hover:border-yellow-400/40 hover:shadow-[0_0_12px_rgba(250,204,21,0.25)]' },
+  { name: 'TypeScript', icon: SiTypescript, color: 'text-blue-500', hoverClass: 'hover:border-blue-500/40 hover:shadow-[0_0_12px_rgba(59,130,246,0.25)]' },
+  { name: 'React', icon: FaReact, color: 'text-cyan-400', hoverClass: 'hover:border-cyan-400/40 hover:shadow-[0_0_12px_rgba(34,211,238,0.25)]' },
+  { name: 'Node.js', icon: FaNodeJs, color: 'text-green-600', hoverClass: 'hover:border-green-500/40 hover:shadow-[0_0_12px_rgba(34,197,94,0.25)]' },
+  { name: 'SQL', icon: FaDatabase, color: 'text-indigo-400', hoverClass: 'hover:border-indigo-400/40 hover:shadow-[0_0_12px_rgba(129,140,248,0.25)]' },
+  { name: 'Docker', icon: FaDocker, color: 'text-blue-500', hoverClass: 'hover:border-blue-500/40 hover:shadow-[0_0_12px_rgba(59,130,246,0.25)]' },
+  { name: 'Git', icon: FaGitAlt, color: 'text-orange-400', hoverClass: 'hover:border-orange-400/40 hover:shadow-[0_0_12px_rgba(251,146,60,0.25)]' },
+  { name: 'Vercel', icon: SiVercel, color: 'text-slate-100 dark:text-slate-900', hoverClass: 'hover:border-slate-200/40 hover:shadow-[0_0_12px_rgba(241,245,249,0.25)]' },
+  { name: 'Kotlin', icon: SiKotlin, color: 'text-purple-500', hoverClass: 'hover:border-purple-500/40 hover:shadow-[0_0_12px_rgba(168,85,247,0.25)]' },
+  { name: 'Java', icon: FaJava, color: 'text-red-500', hoverClass: 'hover:border-red-500/40 hover:shadow-[0_0_12px_rgba(239,68,68,0.25)]' },
+  { name: 'Angular', icon: FaAngular, color: 'text-red-600', hoverClass: 'hover:border-red-600/40 hover:shadow-[0_0_12px_rgba(220,38,38,0.25)]' },
+  { name: 'Ionic', icon: SiIonic, color: 'text-blue-400', hoverClass: 'hover:border-blue-400/40 hover:shadow-[0_0_12px_rgba(96,165,250,0.25)]' },
+  { name: 'Android', icon: FaAndroid, color: 'text-green-500', hoverClass: 'hover:border-green-500/40 hover:shadow-[0_0_12px_rgba(34,197,94,0.25)]' },
+  { name: 'MySQL', icon: SiMysql, color: 'text-blue-600', hoverClass: 'hover:border-blue-600/40 hover:shadow-[0_0_12px_rgba(37,99,235,0.25)]' },
+  { name: 'SQLite', icon: SiSqlite, color: 'text-blue-400', hoverClass: 'hover:border-blue-400/40 hover:shadow-[0_0_12px_rgba(96,165,250,0.25)]' },
+  { name: 'Firebase', icon: SiFirebase, color: 'text-yellow-500', hoverClass: 'hover:border-yellow-500/40 hover:shadow-[0_0_12px_rgba(234,179,8,0.25)]' },
+  { name: 'Linux (RHEL)', icon: SiRedhat, color: 'text-red-600', hoverClass: 'hover:border-red-600/40 hover:shadow-[0_0_12px_rgba(220,38,38,0.25)]' },
+  { name: 'Railway', icon: SiRailway, color: 'text-slate-100 dark:text-slate-900', hoverClass: 'hover:border-slate-200/40 hover:shadow-[0_0_12px_rgba(241,245,249,0.25)]' },
+];
+
 const AboutSection = () => {
   const { ref, isIntersecting } = useIntersectionObserver({
     threshold: 0.2,
@@ -207,17 +231,50 @@ const AboutSection = () => {
               </Modal>
             </div>
           </div>
-          <div className="mb-6">
-            <div className="flex items-center gap-2 font-semibold text-dark-100 mb-1 text-lg">
+          <div className="mb-8">
+            <div className="flex items-center gap-2 font-semibold text-dark-100 mb-4 text-lg">
               <m.span whileHover={{ scale: 1.2, rotate: 10 }} transition={{ type: 'spring', stiffness: 300 }} className="inline-block">
                 <FaGraduationCap className="text-secondary-400" />
               </m.span>
               Educación
             </div>
-            <div className="ml-7 text-dark-200 space-y-1">
-              <div>2026 - 2028: Duoc UC, Ingeniería en Informática (Mención Inteligencia Artificial) - En curso</div>
-              <div>2025: Universidad Andrés Bello, Bootcamp Desarrollo de Aplicaciones Móviles Android</div>
-              <div>2023 - 2025: Duoc UC, Analista Programador Computacional</div>
+            
+            <div className="relative border-l border-primary-500/20 ml-3 pl-6 space-y-6">
+              {/* Item 1 */}
+              <motion.div 
+                whileHover={{ x: 4 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                className="relative"
+              >
+                <div className="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full border-2 border-primary-400 bg-dark-900 shadow-[0_0_8px_rgba(56,189,248,0.5)]" />
+                <span className="text-xs text-primary-400 font-semibold uppercase tracking-wider">2026 - 2028</span>
+                <h4 className="text-base font-bold text-dark-100 mt-0.5">Ingeniería en Informática (Mención IA)</h4>
+                <p className="text-sm text-dark-300">Duoc UC · En curso (2 años restantes)</p>
+              </motion.div>
+              
+              {/* Item 2 */}
+              <motion.div 
+                whileHover={{ x: 4 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                className="relative"
+              >
+                <div className="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full border-2 border-secondary-400 bg-dark-900 shadow-[0_0_8px_rgba(244,114,182,0.5)]" />
+                <span className="text-xs text-secondary-400 font-semibold uppercase tracking-wider">2025</span>
+                <h4 className="text-base font-bold text-dark-100 mt-0.5">Bootcamp Desarrollo de Aplicaciones Móviles Android</h4>
+                <p className="text-sm text-dark-300">Universidad Andrés Bello</p>
+              </motion.div>
+
+              {/* Item 3 */}
+              <motion.div 
+                whileHover={{ x: 4 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                className="relative"
+              >
+                <div className="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full border-2 border-primary-400 bg-dark-900 shadow-[0_0_8px_rgba(56,189,248,0.5)]" />
+                <span className="text-xs text-primary-400 font-semibold uppercase tracking-wider">2023 - 2025</span>
+                <h4 className="text-base font-bold text-dark-100 mt-0.5">Analista Programador Computacional</h4>
+                <p className="text-sm text-dark-300">Duoc UC</p>
+              </motion.div>
             </div>
           </div>
           <div className="mb-8">
@@ -291,69 +348,19 @@ const AboutSection = () => {
                 <FaTools className="text-secondary-400" /> Habilidades Técnicas
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-2">
-                <div className="flex items-center gap-2 text-dark-200 text-base">
-                  <SiPython className="text-blue-400 text-xl" /> Python
-                </div>
-                <div className="flex items-center gap-2 text-dark-200 text-base">
-                  <SiDjango className="text-green-700 text-xl" /> Django
-                </div>
-                <div className="flex items-center gap-2 text-dark-200 text-base">
-                  <SiFastapi className="text-green-500 text-xl" /> FastAPI
-                </div>
-                <div className="flex items-center gap-2 text-dark-200 text-base">
-                  <SiJavascript className="text-yellow-400 text-xl" /> JavaScript
-                </div>
-                <div className="flex items-center gap-2 text-dark-200 text-base">
-                  <SiTypescript className="text-blue-500 text-xl" /> TypeScript
-                </div>
-                <div className="flex items-center gap-2 text-dark-200 text-base">
-                  <FaReact className="text-cyan-400 text-xl" /> React
-                </div>
-                <div className="flex items-center gap-2 text-dark-200 text-base">
-                  <FaNodeJs className="text-green-600 text-xl" /> Node.js
-                </div>
-                <div className="flex items-center gap-2 text-dark-200 text-base">
-                  <FaDatabase className="text-indigo-400 text-xl" /> SQL
-                </div>
-                <div className="flex items-center gap-2 text-dark-200 text-base">
-                  <FaDocker className="text-blue-500 text-xl" /> Docker
-                </div>
-                <div className="flex items-center gap-2 text-dark-200 text-base">
-                  <FaGitAlt className="text-orange-400 text-xl" /> Git
-                </div>
-                <div className="flex items-center gap-2 text-dark-200 text-base">
-                  <SiVercel className="text-black text-xl" /> Vercel
-                </div>
-                <div className="flex items-center gap-2 text-dark-200 text-base">
-                  <SiKotlin className="text-purple-500 text-xl" /> Kotlin
-                </div>
-                <div className="flex items-center gap-2 text-dark-200 text-base">
-                  <FaJava className="text-red-500 text-xl" /> Java
-                </div>
-                <div className="flex items-center gap-2 text-dark-200 text-base">
-                  <FaAngular className="text-red-600 text-xl" /> Angular
-                </div>
-                <div className="flex items-center gap-2 text-dark-200 text-base">
-                  <SiIonic className="text-blue-400 text-xl" /> Ionic
-                </div>
-                <div className="flex items-center gap-2 text-dark-200 text-base">
-                  <FaAndroid className="text-green-500 text-xl" /> Android
-                </div>
-                <div className="flex items-center gap-2 text-dark-200 text-base">
-                  <SiMysql className="text-blue-600 text-xl" /> MySQL
-                </div>
-                <div className="flex items-center gap-2 text-dark-200 text-base">
-                  <SiSqlite className="text-blue-400 text-xl" /> SQLite
-                </div>
-                <div className="flex items-center gap-2 text-dark-200 text-base">
-                  <SiFirebase className="text-yellow-500 text-xl" /> Firebase
-                </div>
-                <div className="flex items-center gap-2 text-dark-200 text-base">
-                  <SiRedhat className="text-red-600 text-xl" /> Linux (RHEL)
-                </div>
-                <div className="flex items-center gap-2 text-dark-200 text-base">
-                  <SiRailway className="text-white text-xl" /> Railway
-                </div>
+                {TECHNICAL_SKILLS.map((skill) => {
+                  const Icon = skill.icon;
+                  return (
+                    <motion.div
+                      key={skill.name}
+                      whileHover={{ scale: 1.04, y: -2 }}
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-lg bg-dark-800/40 border border-dark-700/50 text-dark-200 text-sm hover:text-white hover:bg-dark-850/60 transition-all duration-300 cursor-default ${skill.hoverClass}`}
+                    >
+                      <Icon className={`${skill.color} text-lg transition-transform duration-300`} />
+                      <span>{skill.name}</span>
+                    </motion.div>
+                  );
+                })}
               </div>
             </div>
             <div>

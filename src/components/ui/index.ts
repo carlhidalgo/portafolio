@@ -4,5 +4,6 @@ export { default as Modal } from './Modal';
 export { default as Input } from './Input';
 export { default as Textarea } from './Textarea';
 export { default as Navbar } from './Navbar';
+export { default as CustomCursor } from './CustomCursor';
 export * from './ScrollToTopButton';
 export * from './MovingLights';

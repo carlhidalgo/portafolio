@@ -1,7 +1,7 @@
 import React, { Suspense, useRef } from 'react';
 import { PortfolioProvider } from '@/contexts/PortfolioProvider';
 import { HeroSection, AboutSection, ProjectsSection, ContactSection } from '@/components/sections';
-import { ScrollToTopButton, MovingLights, Navbar } from '@/components/ui';
+import { ScrollToTopButton, MovingLights, Navbar, CustomCursor } from '@/components/ui';
 import { useTheme } from '@/hooks/useTheme';
 import { useParallax } from '@/hooks/useParallax';
 import { Canvas } from '@react-three/fiber';
@@ -23,6 +23,9 @@ const App = () => {
       >
         {/* Barra de navegación flotante */}
         <Navbar />
+
+        {/* Cursor Personalizado Neón */}
+        <CustomCursor />
 
         {/* Fondo 3D global con parallax, cubos flotantes y luces animadas */}
         <div

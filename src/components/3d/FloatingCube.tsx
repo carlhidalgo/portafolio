@@ -32,11 +32,20 @@ const AnimatedCube = ({
   
   useFrame((state) => {
     if (meshRef.current) {
-      meshRef.current.rotation.x = rotation[0] + state.clock.elapsedTime * 0.5;
-      meshRef.current.rotation.y = rotation[1] + state.clock.elapsedTime * 0.3;
-      meshRef.current.rotation.z = rotation[2] + state.clock.elapsedTime * 0.2;
+      // Rotación base con oscilación del mouse
+      const targetRotX = rotation[0] + state.clock.elapsedTime * 0.3 + state.pointer.y * 0.3;
+      const targetRotY = rotation[1] + state.clock.elapsedTime * 0.2 + state.pointer.x * 0.3;
       
-      meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime) * 0.5;
+      meshRef.current.rotation.x = THREE.MathUtils.lerp(meshRef.current.rotation.x, targetRotX, 0.1);
+      meshRef.current.rotation.y = THREE.MathUtils.lerp(meshRef.current.rotation.y, targetRotY, 0.1);
+      meshRef.current.rotation.z = rotation[2] + state.clock.elapsedTime * 0.15;
+      
+      // Flotación en Y + movimiento por mouse en X/Y
+      const targetY = Math.sin(state.clock.elapsedTime) * 0.4 + state.pointer.y * 0.3;
+      const targetX = state.pointer.x * 0.3;
+      
+      meshRef.current.position.y = THREE.MathUtils.lerp(meshRef.current.position.y, targetY, 0.1);
+      meshRef.current.position.x = THREE.MathUtils.lerp(meshRef.current.position.x, targetX, 0.1);
     }
   });
   

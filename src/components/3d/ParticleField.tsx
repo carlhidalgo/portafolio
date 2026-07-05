@@ -41,19 +41,22 @@ const Particles = ({
   
   useFrame((state) => {
     if (points.current) {
-      points.current.rotation.x = state.clock.elapsedTime * speed * 0.1;
-      points.current.rotation.y = state.clock.elapsedTime * speed * 0.05;
+      // Rotación base animada más influencia de la posición del mouse
+      const targetRotX = state.clock.elapsedTime * speed * 0.03 + state.pointer.y * 0.15;
+      const targetRotY = state.clock.elapsedTime * speed * 0.02 + state.pointer.x * 0.15;
+      
+      points.current.rotation.x = THREE.MathUtils.lerp(points.current.rotation.x, targetRotX, 0.1);
+      points.current.rotation.y = THREE.MathUtils.lerp(points.current.rotation.y, targetRotY, 0.1);
+      
       const posAttr = points.current.geometry.attributes['position'];
       if (posAttr) {
         const positions = posAttr.array as Float32Array;
         if (positions && positions.length >= count * 3) {
           for (let i = 0; i < count; i++) {
             const idx = i * 3 + 1;
-            if (
-              typeof positions[idx] === 'number' &&
-              positions[idx] !== undefined
-            ) {
-              positions[idx] += Math.sin(state.clock.elapsedTime + i) * 0.01;
+            const currentVal = positions[idx];
+            if (currentVal !== undefined) {
+              positions[idx] = currentVal + Math.sin(state.clock.elapsedTime * 0.5 + i) * 0.003;
             }
           }
         }

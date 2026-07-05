@@ -61,19 +61,30 @@ const ProjectCard = ({ project }: { project: Project }) => {
   const videoRef = React.useRef<HTMLVideoElement>(null);
 
   React.useEffect(() => {
-    if (!cardRef.current || !videoRef.current) return;
-    const observer = new window.IntersectionObserver(
-      ([entry]) => {
-        if (entry && entry.isIntersecting) {
-          videoRef.current?.play().catch(() => {});
-        } else if (entry) {
-          videoRef.current?.pause();
-        }
-      },
-      { threshold: 0.2 }
-    );
-    observer.observe(cardRef.current);
-    return () => observer.disconnect();
+    const cardEl = cardRef.current;
+    const videoEl = videoRef.current;
+    if (!cardEl || !videoEl) return;
+
+    // Pausar inicialmente
+    videoEl.pause();
+    videoEl.currentTime = 0;
+
+    const handleMouseEnter = () => {
+      videoEl.play().catch(() => {});
+    };
+
+    const handleMouseLeave = () => {
+      videoEl.pause();
+      videoEl.currentTime = 0; // Reiniciar al inicio
+    };
+
+    cardEl.addEventListener('mouseenter', handleMouseEnter);
+    cardEl.addEventListener('mouseleave', handleMouseLeave);
+
+    return () => {
+      cardEl.removeEventListener('mouseenter', handleMouseEnter);
+      cardEl.removeEventListener('mouseleave', handleMouseLeave);
+    };
   }, []);
 
   return (

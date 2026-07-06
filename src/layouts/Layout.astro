@@ -1,0 +1,51 @@
+---
+import '../index.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = "Carlos Hidalgo Portafolio", 
+  description = "Portafolio profesional de Carlos Hidalgo. Proyectos 3D, animaciones, UI moderna, React, TypeScript, Tailwind, Framer Motion. Descubre mis trabajos y habilidades técnicas." 
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    
+    <meta name="description" content={description} />
+    <meta name="author" content="Carlos Hidalgo" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0f172a" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/favicon.ico" />
+    <link rel="canonical" href="https://carloshidalgo.dev/" />
+    
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Carlos Hidalgo | Portafolio 3D - Desarrollador Frontend & UI" />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content="https://carloshidalgo.dev/" />
+    <meta property="og:image" content="/vite.svg" />
+    <meta property="og:locale" content="es_ES" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Carlos Hidalgo | Portafolio 3D - Desarrollador Frontend & UI" />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="/vite.svg" />
+    <meta name="twitter:site" content="@carloshidalgo_dev" />
+    
+    <meta name="keywords" content="portafolio, frontend, react, 3D, desarrollador, tailwind, typescript, UI, animaciones, carlos hidalgo" />
+    <meta name="language" content="es" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

@@ -19,7 +19,7 @@ const App = () => {
     <PortfolioProvider>
       <div 
         ref={containerRef} 
-        className="min-h-screen relative text-dark-50 dark:text-dark-900 transition-colors duration-500 overflow-x-hidden"
+        className="min-h-screen relative text-dark-50 transition-colors duration-500 overflow-x-hidden"
       >
         {/* Barra de navegación flotante */}
         <Navbar />

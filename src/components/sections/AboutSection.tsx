@@ -20,7 +20,7 @@ const TECHNICAL_SKILLS = [
   { name: 'SQL', icon: FaDatabase, color: 'text-indigo-400', hoverClass: 'hover:border-indigo-400/40 hover:shadow-[0_0_12px_rgba(129,140,248,0.25)]' },
   { name: 'Docker', icon: FaDocker, color: 'text-blue-500', hoverClass: 'hover:border-blue-500/40 hover:shadow-[0_0_12px_rgba(59,130,246,0.25)]' },
   { name: 'Git', icon: FaGitAlt, color: 'text-orange-400', hoverClass: 'hover:border-orange-400/40 hover:shadow-[0_0_12px_rgba(251,146,60,0.25)]' },
-  { name: 'Vercel', icon: SiVercel, color: 'text-slate-100 dark:text-slate-900', hoverClass: 'hover:border-slate-200/40 hover:shadow-[0_0_12px_rgba(241,245,249,0.25)]' },
+  { name: 'Vercel', icon: SiVercel, color: 'text-slate-100', hoverClass: 'hover:border-slate-200/40 hover:shadow-[0_0_12px_rgba(241,245,249,0.25)]' },
   { name: 'Kotlin', icon: SiKotlin, color: 'text-purple-500', hoverClass: 'hover:border-purple-500/40 hover:shadow-[0_0_12px_rgba(168,85,247,0.25)]' },
   { name: 'Java', icon: FaJava, color: 'text-red-500', hoverClass: 'hover:border-red-500/40 hover:shadow-[0_0_12px_rgba(239,68,68,0.25)]' },
   { name: 'Angular', icon: FaAngular, color: 'text-red-600', hoverClass: 'hover:border-red-600/40 hover:shadow-[0_0_12px_rgba(220,38,38,0.25)]' },
@@ -30,7 +30,7 @@ const TECHNICAL_SKILLS = [
   { name: 'SQLite', icon: SiSqlite, color: 'text-blue-400', hoverClass: 'hover:border-blue-400/40 hover:shadow-[0_0_12px_rgba(96,165,250,0.25)]' },
   { name: 'Firebase', icon: SiFirebase, color: 'text-yellow-500', hoverClass: 'hover:border-yellow-500/40 hover:shadow-[0_0_12px_rgba(234,179,8,0.25)]' },
   { name: 'Linux (RHEL)', icon: SiRedhat, color: 'text-red-600', hoverClass: 'hover:border-red-600/40 hover:shadow-[0_0_12px_rgba(220,38,38,0.25)]' },
-  { name: 'Railway', icon: SiRailway, color: 'text-slate-100 dark:text-slate-900', hoverClass: 'hover:border-slate-200/40 hover:shadow-[0_0_12px_rgba(241,245,249,0.25)]' },
+  { name: 'Railway', icon: SiRailway, color: 'text-slate-100', hoverClass: 'hover:border-slate-200/40 hover:shadow-[0_0_12px_rgba(241,245,249,0.25)]' },
 ];
 
 const AboutSection = () => {

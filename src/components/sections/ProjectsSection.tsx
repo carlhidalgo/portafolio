@@ -55,10 +55,37 @@ const itemVariants = {
 };
 
 
-// Componente hijo para cada tarjeta de proyecto
+// Componente hijo para cada tarjeta de proyecto con efecto de inclinación 3D (Tilt)
 const ProjectCard = ({ project }: { project: Project }) => {
   const cardRef = React.useRef<HTMLDivElement>(null);
   const videoRef = React.useRef<HTMLVideoElement>(null);
+  const [tilt, setTilt] = React.useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    
+    // Coordenadas relativas al centro de la tarjeta en rango [-1, 1]
+    const mouseX = (e.clientX - rect.left - width / 2) / (width / 2);
+    const mouseY = (e.clientY - rect.top - height / 2) / (height / 2);
+    
+    // Inclinación máxima de 12 grados
+    setTilt({
+      x: -mouseY * 12,
+      y: mouseX * 12,
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setTilt({ x: 0, y: 0 });
+    // Pausar y reiniciar video
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  };
 
   React.useEffect(() => {
     const cardEl = cardRef.current;
@@ -73,17 +100,10 @@ const ProjectCard = ({ project }: { project: Project }) => {
       videoEl.play().catch(() => {});
     };
 
-    const handleMouseLeave = () => {
-      videoEl.pause();
-      videoEl.currentTime = 0; // Reiniciar al inicio
-    };
-
     cardEl.addEventListener('mouseenter', handleMouseEnter);
-    cardEl.addEventListener('mouseleave', handleMouseLeave);
 
     return () => {
       cardEl.removeEventListener('mouseenter', handleMouseEnter);
-      cardEl.removeEventListener('mouseleave', handleMouseLeave);
     };
   }, []);
 
@@ -92,12 +112,31 @@ const ProjectCard = ({ project }: { project: Project }) => {
       key={project.id}
       variants={itemVariants}
       ref={cardRef}
-      className="group min-h-[420px] h-full shadow-2xl border-2 border-primary-900/20 bg-[#181A20]/80 backdrop-blur-md transition-all duration-300 group-hover:scale-[1.03] group-hover:shadow-primary-400/30 group-hover:border-primary-400/60 group-hover:bg-[#181A20]/95 group-hover:z-20 group-hover:ring-2 group-hover:ring-primary-400/30 rounded-xl flex flex-col"
-      whileHover={{ rotateX: 6, rotateY: -6, scale: 1.04 }}
-      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="group min-h-[420px] h-full shadow-2xl border border-primary-900/10 bg-[#181A20]/80 backdrop-blur-md transition-all duration-300 rounded-xl flex flex-col p-5 select-none"
+      animate={{
+        rotateX: tilt.x,
+        rotateY: tilt.y,
+        scale: tilt.x !== 0 || tilt.y !== 0 ? 1.04 : 1,
+        boxShadow: tilt.x !== 0 || tilt.y !== 0 
+          ? '0 20px 40px rgba(56, 189, 248, 0.25)' 
+          : '0 10px 20px rgba(0, 0, 0, 0.3)',
+        borderColor: tilt.x !== 0 || tilt.y !== 0 
+          ? 'rgba(56, 189, 248, 0.5)' 
+          : 'rgba(56, 189, 248, 0.1)',
+      }}
+      transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+      style={{
+        transformStyle: 'preserve-3d',
+        perspective: '1000px',
+      }}
     >
       {/* Fondo 3D detrás del video */}
-      <div className="relative mb-4 flex flex-col items-center">
+      <div 
+        className="relative mb-4 flex flex-col items-center"
+        style={{ transform: 'translateZ(30px)', transformStyle: 'preserve-3d' }}
+      >
         {/* Sub-tarjeta para el video */}
         <div className="w-full bg-dark-900/80 border border-primary-900/40 rounded-xl shadow-lg mb-3 overflow-visible relative flex items-center justify-center min-h-[192px]">
           {/* Fondo gradiente de estilo cyberpunk */}
@@ -147,13 +186,19 @@ const ProjectCard = ({ project }: { project: Project }) => {
           )}
         </div>
         {/* Título y descripción breve */}
-        <div className="w-full px-2 text-center">
+        <div 
+          className="w-full px-2 text-center"
+          style={{ transform: 'translateZ(20px)' }}
+        >
           <h3 className="text-lg font-bold text-primary-300 mb-1">{project.title}</h3>
           <p className="text-dark-200 text-sm mb-1 line-clamp-2">{project.description}</p>
         </div>
       </div>
       {/* Status y destacado */}
-      <div className="flex items-center justify-between mb-4">
+      <div 
+        className="flex items-center justify-between mb-4 mt-auto"
+        style={{ transform: 'translateZ(15px)' }}
+      >
         <span
           className={`px-2 py-1 rounded-full text-xs font-medium border ${getStatusColor(project.status)}`}
         >
@@ -166,7 +211,10 @@ const ProjectCard = ({ project }: { project: Project }) => {
         )}
       </div>
       {/* Tecnologías */}
-      <div className="flex flex-wrap gap-1 mb-4">
+      <div 
+        className="flex flex-wrap gap-1 mb-4"
+        style={{ transform: 'translateZ(10px)' }}
+      >
         {project.technologies.map((tech: string) => (
           <span
             key={tech}
@@ -177,7 +225,10 @@ const ProjectCard = ({ project }: { project: Project }) => {
         ))}
       </div>
       {/* Botones */}
-      <div className="flex gap-2">
+      <div 
+        className="flex gap-2"
+        style={{ transform: 'translateZ(10px)' }}
+      >
         {project.githubUrl && (
           <Button
             variant="ghost"

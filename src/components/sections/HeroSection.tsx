@@ -81,12 +81,19 @@ const HeroSection = () => {
       >
         {/* Name */}
         <motion.h1
-          className="text-5xl md:text-7xl font-bold mb-6"
+          className="text-5xl md:text-7xl font-bold mb-6 select-none"
           variants={itemVariants}
         >
-          <span className="text-gradient">
-            {data.personalInfo.name}
-          </span>
+          <div className="relative inline-block">
+            {/* Capa de brillo neón de fondo */}
+            <span className="absolute inset-0 text-gradient blur-md opacity-70 select-none pointer-events-none">
+              {data.personalInfo.name}
+            </span>
+            {/* Texto nítido del frente */}
+            <span className="relative text-gradient">
+              {data.personalInfo.name}
+            </span>
+          </div>
         </motion.h1>
         
         {/* Title */}

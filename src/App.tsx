@@ -1,4 +1,5 @@
-import React, { Suspense, useRef } from 'react';
+import React, { Suspense, useRef, useEffect } from 'react';
+import Lenis from 'lenis';
 import { PortfolioProvider } from '@/contexts/PortfolioProvider';
 import { HeroSection, AboutSection, ProjectsSection, ContactSection } from '@/components/sections';
 import { ScrollToTopButton, MovingLights, Navbar, CustomCursor } from '@/components/ui';
@@ -14,6 +15,25 @@ const App = () => {
   useTheme();
   const parallaxY = useParallax(0.18);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      touchMultiplier: 2,
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
 
   return (
     <PortfolioProvider>

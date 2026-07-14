@@ -12,8 +12,13 @@ const ContactSection = () => {
   return (
     <section id="contacto" className="py-20 px-4 bg-transparent">
       <div className="max-w-xl mx-auto bg-dark-900/80 rounded-3xl shadow-2xl p-8 border border-dark-700">
-        <h2 className="text-4xl font-extrabold mb-6 tracking-tight text-gradient bg-gradient-to-r from-primary-400 to-secondary-400 bg-clip-text text-transparent text-center">
-          Contacto
+        <h2 className="text-4xl font-extrabold mb-6 tracking-tight text-center">
+          <span style={{
+            background: 'linear-gradient(135deg, #60a5fa 0%, #06b6d4 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+          }}>Contacto</span>
         </h2>
         {state.succeeded ? (
           <div className="text-green-400 text-center mt-2 text-lg font-semibold">¡Mensaje enviado correctamente!</div>

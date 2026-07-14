@@ -275,7 +275,13 @@ const ProjectsSection = () => {
           animate="visible"
         >
           <motion.h2
-            className="text-3xl font-bold text-gradient mb-4"
+            className="text-3xl font-bold mb-4"
+            style={{
+              background: 'linear-gradient(135deg, #60a5fa 0%, #06b6d4 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}
             variants={itemVariants}
           >
             Mis Proyectos 

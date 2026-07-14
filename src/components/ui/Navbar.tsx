@@ -58,10 +58,19 @@ const Navbar = () => {
         <a 
           href="#" 
           onClick={(e) => handleScrollTo(e, '#')}
-          className="flex items-center gap-2 group text-xl font-bold text-gradient bg-gradient-to-r from-primary-400 to-accent-400 bg-clip-text text-transparent"
+          className="flex items-center gap-2 group text-xl font-bold"
         >
           <Code className="w-6 h-6 text-primary-400 group-hover:rotate-12 transition-transform duration-300" />
-          <span>Carlos Hidalgo</span>
+          <span
+            style={{
+              background: 'linear-gradient(135deg, #60a5fa 0%, #06b6d4 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}
+          >
+            Carlos Hidalgo
+          </span>
         </a>
 
         {/* Desktop Menu */}

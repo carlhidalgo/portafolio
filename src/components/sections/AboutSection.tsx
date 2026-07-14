@@ -52,11 +52,20 @@ const AboutSection = () => {
           animate={isIntersecting ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
         >
-          <h2 className="text-4xl font-extrabold text-center mb-2 tracking-tight text-gradient bg-gradient-to-r from-primary-400 to-secondary-400 bg-clip-text text-transparent">
+          <h2 className="text-4xl font-extrabold text-center mb-2 tracking-tight">
             <m.span whileHover={{ scale: 1.2, rotate: 10 }} transition={{ type: 'spring', stiffness: 300 }} className="inline-block mr-2 mb-1 align-middle">
               <FaUserTie className="text-primary-400" size={36} />
             </m.span>
-            Sobre Mí
+            <span
+              style={{
+                background: 'linear-gradient(135deg, #60a5fa 0%, #06b6d4 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}
+            >
+              Sobre Mí
+            </span>
           </h2>
           <p className="text-dark-300 text-lg text-center mb-8 max-w-2xl mx-auto leading-relaxed">
             Desarrollador de software con formación en análisis y programación computacional, especializado en <span className="font-semibold text-primary-400">Python</span>, <span className="font-semibold text-primary-400">JavaScript</span>, <span className="font-semibold text-primary-400">Kotlin</span> y <span className="font-semibold text-primary-400">Java</span>. Experiencia en desarrollo full-stack backend y móvil con frameworks como <span className="font-semibold text-primary-400">Django</span>, <span className="font-semibold text-primary-400">FastAPI</span>, <span className="font-semibold text-primary-400">Angular</span> y <span className="font-semibold text-primary-400">React</span>. Certificado por Google, Microsoft Azure, Cisco y Red Hat en TI y ciberseguridad. Apasionado por construir soluciones escalables, colaborar en equipo y aprender de forma continua.
@@ -126,7 +135,12 @@ const AboutSection = () => {
                     
                     {/* Encabezado del CV */}
                     <div className="text-center border-b border-dark-800 pb-6 mb-6 mt-8">
-                      <h3 className="text-3xl font-bold text-gradient mb-2">Carlos Andrés Hidalgo de la Fuente</h3>
+                      <h3 className="text-3xl font-bold mb-2" style={{
+                        background: 'linear-gradient(135deg, #60a5fa 0%, #06b6d4 100%)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        backgroundClip: 'text',
+                      }}>Carlos Andrés Hidalgo de la Fuente</h3>
                       <p className="text-xl text-primary-400 font-semibold mb-4">Desarrollador de Software</p>
                       <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-dark-300">
                         <span>📍 Valparaíso, Chile</span>
